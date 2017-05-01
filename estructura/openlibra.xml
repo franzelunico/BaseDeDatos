@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="UTF-8"?><Db flnm="openlibra" nm="openlibra" ver="1.3.4">
+  <VerLbl/>
+  <VerNotes/>
+  <DefTblOpts/>
+  <DocFolder>/home/killer/Documentos/TBD_Flores/IDIOMS_17/proyecto</DocFolder>
+  <Sch Cm="" nm="public">
+    <Tbl UsSo="1" nm="Autor">
+      <TblOpts/>
+      <Pk ClNs="id_autor" nm="pkAutor"/>
+      <Cl au="1" df="" nm="id_autor" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombres" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="apellido_paterno" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="apellido_materno" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Categoria">
+      <TblOpts/>
+      <Pk ClNs="id_categoria" nm="pkCategoria"/>
+      <Cl au="1" df="" nm="id_categoria" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Id_Editorial" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_cat" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Ciudad">
+      <TblOpts/>
+      <Pk ClNs="id_ciudad" nm="pkCiudad"/>
+      <Cl au="1" df="" nm="id_ciudad" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_pais" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_ciu" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="codigo_postal" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Ciudad_Pais" prLkCl="id_pais" upAc="3">
+        <PrTb mn="0" nm="Pais" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Ciudad" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_pais" prCl="id_pais"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Desposito_Bancario">
+      <TblOpts/>
+      <Pk ClNs="Id_DepositoBancario" nm="pkDesposito_Bancario"/>
+      <Cl au="0" df="" nm="Id_DepositoBancario" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nro_cuenta" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="banco" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Editorial">
+      <TblOpts/>
+      <Pk ClNs="id_editorial" nm="pkEditorial"/>
+      <Cl au="1" df="" nm="id_editorial" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_edi" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fundacion" nu="0">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pagina" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Factura">
+      <TblOpts/>
+      <Pk ClNs="id_producto, fecha" nm="pkFactura"/>
+      <Cl au="0" df="" nm="id_producto" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_ciudad" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="direccion" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_tarjeta" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Factura_Tarjeta" prLkCl="id_tarjeta" upAc="3">
+        <PrTb mn="0" nm="Tarjeta" oe="1" sch="public" zr="1"/>
+        <CdTb mn="1" nm="Factura" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_tarjeta" prCl="id_tarjeta"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Venta_Producto_Ciudad" prLkCl="id_ciudad" upAc="3">
+        <PrTb mn="0" nm="Ciudad" oe="1" sch="public" zr="1"/>
+        <CdTb mn="1" nm="Factura" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_ciudad" prCl="id_ciudad"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Venta_Producto_Producto" prLkCl="id_producto" upAc="3">
+        <PrTb mn="0" nm="Producto" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Factura" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_producto" prCl="id_producto"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Funcion">
+      <TblOpts/>
+      <Pk ClNs="id_funcion" nm="pkFuncion"/>
+      <Cl au="1" df="" nm="id_funcion" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_f" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Funcion_Interface">
+      <TblOpts/>
+      <Pk ClNs="id_funcion, id_interface" nm="pkFuncion_Interface"/>
+      <Cl au="0" df="" nm="id_funcion" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_interface" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Funcion_Interface_Funcion" prLkCl="id_funcion" upAc="3">
+        <PrTb mn="0" nm="Funcion" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Funcion_Interface" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_funcion" prCl="id_funcion"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Funcion_Interface_Interface" prLkCl="id_interface" upAc="3">
+        <PrTb mn="0" nm="Interface" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Funcion_Interface" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_interface" prCl="id_interface"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Idioma">
+      <TblOpts/>
+      <Pk ClNs="id_idioma" nm="pkIdioma"/>
+      <Cl au="1" df="" nm="id_idioma" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_idio" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Interface">
+      <TblOpts/>
+      <Pk ClNs="id_interface" nm="pkInterface"/>
+      <Cl au="1" df="" nm="id_interface" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_tipo_ui" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Interface_Tipo_UI" prLkCl="id_tipo_ui" upAc="3">
+        <PrTb mn="0" nm="Tipo_UI" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Interface" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_tipo_ui" prCl="id_tipo_ui"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Libro">
+      <TblOpts/>
+      <Pk ClNs="id_producto" nm="pkLibro"/>
+      <Cl au="1" df="" nm="id_producto" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_categoria" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_editorial" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_idioma" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="titulo" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descripcion" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="ISB" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_publicacion" nu="0">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Libro_Categoria" prLkCl="id_categoria" upAc="3">
+        <PrTb mn="0" nm="Categoria" oe="1" sch="public" zr="1"/>
+        <CdTb mn="1" nm="Libro" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_categoria" prCl="id_categoria"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Libro_Editorial" prLkCl="id_editorial" upAc="3">
+        <PrTb mn="0" nm="Editorial" oe="1" sch="public" zr="1"/>
+        <CdTb mn="1" nm="Libro" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_editorial" prCl="id_editorial"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Libro_Idioma" prLkCl="id_idioma" upAc="3">
+        <PrTb mn="0" nm="Idioma" oe="1" sch="public" zr="1"/>
+        <CdTb mn="1" nm="Libro" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_idioma" prCl="id_idioma"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Libro_Producto" prLkCl="id_producto" upAc="3">
+        <PrTb mn="0" nm="Producto" oe="1" sch="public" zr="0"/>
+        <CdTb mn="0" nm="Libro" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="id_producto" prCl="id_producto"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Libro_Autores">
+      <TblOpts/>
+      <Pk ClNs="id_autor, id_producto" nm="pkLibro_Autores"/>
+      <Cl au="0" df="" nm="id_autor" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_producto" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Libro_Autores_Autor" prLkCl="id_autor" upAc="3">
+        <PrTb mn="0" nm="Autor" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Libro_Autores" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_autor" prCl="id_autor"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Libro_Autores_Libro" prLkCl="id_producto" upAc="3">
+        <PrTb mn="0" nm="Libro" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Libro_Autores" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_producto" prCl="id_producto"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Oferta">
+      <TblOpts/>
+      <Pk ClNs="Id_Oferta" nm="pkOferta"/>
+      <Cl au="0" df="" nm="Id_Oferta" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="porcenta_descuento" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_inicio" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_fin" nu="1">
+        <DT arr="0" ds="DateTime" en="" id="700" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Id_Producto" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Oferta_Producto" prLkCl="id_producto" upAc="3">
+        <PrTb mn="0" nm="Producto" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Oferta" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="Id_Producto" prCl="id_producto"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Pais">
+      <TblOpts/>
+      <Pk ClNs="id_pais" nm="pkPais"/>
+      <Cl au="1" df="" nm="id_pais" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_pai" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="codigo_pais" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Producto">
+      <TblOpts/>
+      <Pk ClNs="id_producto" nm="pkProducto"/>
+      <Cl au="1" df="" nm="id_producto" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tamanio_archivo_KB" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="precio" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="porcentaje_descuento" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="oferta_inicio" nu="1">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="oferta_fin" nu="1">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Programa">
+      <TblOpts/>
+      <Pk ClNs="id_producto" nm="pkPrograma"/>
+      <Cl au="1" df="" nm="id_producto" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_sistema_operativo" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_activacion" nu="1">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_expiracion" nu="1">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_pro" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="version" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="dominio_32_64" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="5" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Programa_Producto" prLkCl="id_producto" upAc="3">
+        <PrTb mn="0" nm="Producto" oe="1" sch="public" zr="0"/>
+        <CdTb mn="0" nm="Programa" oe="1" sch="public" zr="0"/>
+        <ClPr cdCl="id_producto" prCl="id_producto"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Programa_SistemaOperativo" prLkCl="id_sistema_operativo" upAc="3">
+        <PrTb mn="0" nm="Sistema_Operativo" oe="1" sch="public" zr="1"/>
+        <CdTb mn="1" nm="Programa" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_sistema_operativo" prCl="id_sistema_operativo"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Rol">
+      <TblOpts/>
+      <Pk ClNs="id_rol" nm="pkRol"/>
+      <Cl au="1" df="" nm="id_rol" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_r" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Rol_Funcion">
+      <TblOpts/>
+      <Pk ClNs="id_rol, id_funcion" nm="pkRol_Funcion"/>
+      <Cl au="0" df="" nm="id_rol" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_funcion" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="False" nm="activo" nu="0">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Rol_Funcion_Funcion" prLkCl="id_funcion" upAc="3">
+        <PrTb mn="0" nm="Funcion" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Rol_Funcion" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_funcion" prCl="id_funcion"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_Rol_Funcion_Rol" prLkCl="id_rol" upAc="3">
+        <PrTb mn="0" nm="Rol" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Rol_Funcion" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_rol" prCl="id_rol"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Session">
+      <TblOpts/>
+      <Pk ClNs="id_session, id_usuario" nm="pkSession"/>
+      <Cl au="1" df="" nm="id_session" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_usuario" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="pg_backend_pid()" nm="pid" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="now()" nm="fecha" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="False" nm="activo" nu="0">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Session_Usuario" prLkCl="id_usuario" upAc="3">
+        <PrTb mn="0" nm="Usuario" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="Session" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_usuario" prCl="id_usuario"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Sistema_Operativo">
+      <TblOpts/>
+      <Pk ClNs="id_sistema_operativo" nm="pkSistema_Operativo"/>
+      <Cl au="1" df="" nm="id_sistema_operativo" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_so" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="version" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="arquitectura" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="2" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Tarjeta">
+      <TblOpts/>
+      <Pk ClNs="id_tarjeta" nm="pkTarjeta"/>
+      <Cl au="1" df="" nm="id_tarjeta" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_usuario" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_tar" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nro_tarjeta" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="16" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cardholder_name" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="fecha_expiracion" nu="0">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Tarjeta_Usuario" prLkCl="id_usuario" upAc="3">
+        <PrTb mn="0" nm="Usuario" oe="1" sch="public" zr="1"/>
+        <CdTb mn="1" nm="Tarjeta" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_usuario" prCl="id_usuario"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Tipo_UI">
+      <TblOpts/>
+      <Pk ClNs="id_tipo_ui" nm="pkTipo_UI"/>
+      <Cl au="1" df="" nm="id_tipo_ui" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_t_u" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="User_Rol">
+      <TblOpts/>
+      <Pk ClNs="id_usuario, id_rol" nm="pkUser_Rol"/>
+      <Cl au="0" df="" nm="id_usuario" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="id_rol" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="False" nm="activo" nu="0">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_User_Rol_Rol" prLkCl="id_rol" upAc="3">
+        <PrTb mn="0" nm="Rol" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="User_Rol" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_rol" prCl="id_rol"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_User_Rol_Usuario" prLkCl="id_usuario" upAc="3">
+        <PrTb mn="0" nm="Usuario" oe="1" sch="public" zr="0"/>
+        <CdTb mn="1" nm="User_Rol" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_usuario" prCl="id_usuario"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Usuario">
+      <TblOpts/>
+      <Pk ClNs="id_usuario" nm="pkUsuario"/>
+      <Cl au="1" df="" nm="id_usuario" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_u" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="password" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="Venta_Libro">
+      <TblOpts/>
+      <Pk ClNs="Id_Venta_Libro" nm="pkVenta_Libro"/>
+      <Cl au="0" df="" nm="Id_Venta_Libro" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="Id_Producto" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <CustomTypes/>
+  </Sch>
+  <Dgm nm="diagramA">
+    <RnCf ClkAct="true" FtSz="11" lkStgy="RightAngleStrategy" zm="0.75">
+      <VbCfg>
+        <Fg ky="Auto Number" vl="0"/>
+        <Fg ky="Check" vl="0"/>
+        <Fg ky="Comment" vl="0"/>
+        <Fg ky="Data Type" vl="1"/>
+        <Fg ky="Default" vl="0"/>
+        <Fg ky="ENUM Values" vl="0"/>
+        <Fg ky="Length" vl="1"/>
+        <Fg ky="Name" vl="1"/>
+        <Fg ky="Nullable" vl="0"/>
+        <Fg ky="Schema Name" vl="0"/>
+        <Fg ky="Signed" vl="0"/>
+      </VbCfg>
+    </RnCf>
+    <DiaProps>
+      <Show AllCols="1" FkCols="1" FkNms="1" PkCols="1"/>
+      <ErNotation>BarkerErNotation</ErNotation>
+      <DbTableRectangleFill>HeaderFooterFill</DbTableRectangleFill>
+      <svg path=""/>
+    </DiaProps>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Producto" x="879" y="864"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Libro" x="1045" y="1106"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Sistema_Operativo" x="144" y="1119"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Programa" x="701" y="1117"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Factura" x="898" y="682"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Categoria" x="1448" y="1063"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Editorial" x="1721" y="1133"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Autor" x="1492" y="1337"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Libro_Autores" x="1325" y="1479"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Usuario" x="872" y="354"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Ciudad" x="1299" y="690"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Pais" x="1674" y="688"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Tarjeta" x="432" y="342"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Idioma" x="1446" y="1207"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Session" x="892" y="148"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="User_Rol" x="1181" y="489"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Rol" x="1362" y="340"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Rol_Funcion" x="1592" y="490"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Funcion" x="1867" y="349"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Tipo_UI" x="2259" y="274"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Interface" x="2268" y="401"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Funcion_Interface" x="2125" y="554"/>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Ciudad.fk_Ciudad_Pais" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1674" x2="1537" y1="726" y2="726"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Factura.fk_Factura_Tarjeta" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="537" x2="537" y1="447" y2="693"/>
+        <positionableLine lineRole="CHILD_LINE" x1="898" x2="541" y1="697" y2="697"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Factura.fk_Venta_Producto_Ciudad" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1299" x2="1125" y1="740" y2="740"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="public.Factura.fk_Venta_Producto_Producto" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1000" x2="1000" y1="864" y2="774"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Funcion_Interface.fk_Funcion_Interface_Funcion" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="2042" x2="2042" y1="402" y2="576"/>
+        <positionableLine lineRole="CHILD_LINE" x1="2125" x2="2046" y1="580" y2="580"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Funcion_Interface.fk_Funcion_Interface_Interface" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="2363" x2="2363" y1="454" y2="576"/>
+        <positionableLine lineRole="CHILD_LINE" x1="2315" x2="2359" y1="580" y2="580"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="public.Interface.fk_Interface_Tipo_UI" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="2348" x2="2348" y1="327" y2="401"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro.fk_Libro_Categoria" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1448" x2="1306" y1="1124" y2="1124"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro.fk_Libro_Editorial" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1721" x2="1306" y1="1172" y2="1172"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro.fk_Libro_Idioma" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1446" x2="1306" y1="1221" y2="1221"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="public.Libro.fk_Libro_Producto" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1088" x2="1088" y1="969" y2="1106"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro_Autores.fk_Libro_Autores_Autor" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1670" x2="1670" y1="1416" y2="1505"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1515" x2="1666" y1="1509" y2="1509"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Libro_Autores.fk_Libro_Autores_Libro" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1203" x2="1203" y1="1237" y2="1500"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1325" x2="1207" y1="1504" y2="1504"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="public.Programa.fk_Programa_Producto" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="909" x2="909" y1="969" y2="1117"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Programa.fk_Programa_SistemaOperativo" parentEdge="EAST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="426" x2="701" y1="1165" y2="1165"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Rol_Funcion.fk_Rol_Funcion_Funcion" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1905" x2="1905" y1="402" y2="498"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1777" x2="1901" y1="502" y2="502"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Rol_Funcion.fk_Rol_Funcion_Rol" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1530" x2="1530" y1="393" y2="497"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1592" x2="1534" y1="501" y2="501"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="public.Session.fk_Session_Usuario" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="983" x2="983" y1="354" y2="240"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Tarjeta.fk_Tarjeta_Usuario" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="872" x2="692" y1="387" y2="387"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.User_Rol.fk_User_Rol_Rol" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1402" x2="1402" y1="393" y2="498"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1367" x2="1398" y1="502" y2="502"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="public.User_Rol.fk_User_Rol_Usuario" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1040" x2="1040" y1="420" y2="498"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1181" x2="1044" y1="502" y2="502"/>
+      </positionableLines>
+    </FkGl>
+    <Notes/>
+    <Zones/>
+  </Dgm>
+  <RnmMgr NxRnmId="99">
+    <RnmCh ObjCls="Schema" ParCls="Database" ParNme="openlibra" SupCls="" SupNme="">
+      <Rnm id="1" nNm="public" oNm="schemaA"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Oferta" SupCls="Schema" SupNme="public">
+      <Rnm id="2" nNm="Id_Oferta" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="48" nNm="Sistema_Operativo" oNm="SistemaOperativo"/>
+      <Rnm id="14" nNm="SistemaOperativo" oNm="Programa"/>
+      <Rnm id="3" nNm="Programa" oNm="programa"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Producto" SupCls="Schema" SupNme="public">
+      <Rnm id="45" nNm="id_producto" oNm="Id_Producto"/>
+      <Rnm id="4" nNm="Id_Producto" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Libro" SupCls="Schema" SupNme="public">
+      <Rnm id="5" nNm="Id_Libro" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Sistema_Operativo" SupCls="Schema" SupNme="public">
+      <Rnm id="47" nNm="id_sistema_operativo" oNm="Id_SistemaOperativo"/>
+      <Rnm id="15" nNm="Id_SistemaOperativo" oNm="Id_Programa"/>
+      <Rnm id="6" nNm="Id_Programa" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="23" nNm="Id_Venta_Producto" oNm="Id_Venta_Programa"/>
+      <Rnm id="7" nNm="Id_Venta_Programa" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Programa" SupCls="Schema" SupNme="public">
+      <Rnm id="8" nNm="Id_Licencia" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Categoria" SupCls="Schema" SupNme="public">
+      <Rnm id="55" nNm="id_categoria" oNm="Id_Categoria"/>
+      <Rnm id="9" nNm="Id_Categoria" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Editorial" SupCls="Schema" SupNme="public">
+      <Rnm id="57" nNm="id_editorial" oNm="Id_Editorial"/>
+      <Rnm id="10" nNm="Id_Editorial" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Autor" SupCls="Schema" SupNme="public">
+      <Rnm id="62" nNm="id_autor" oNm="Id_Autor"/>
+      <Rnm id="11" nNm="Id_Autor" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Libro_Autores" SupCls="Schema" SupNme="public">
+      <Rnm id="12" nNm="Id_Libro_Autor" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="16" nNm="Programa" oNm="ProgramaP"/>
+      <Rnm id="13" nNm="ProgramaP" oNm="Licencia"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Autor" SupCls="Schema" SupNme="public">
+      <Rnm id="17" nNm="nombres" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Venta_Libro" SupCls="Schema" SupNme="public">
+      <Rnm id="18" nNm="Id_Venta_Libro" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="19" nNm="fecha" oNm="fecha_venta"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Usuario" SupCls="Schema" SupNme="public">
+      <Rnm id="36" nNm="id_usuario" oNm="Id_Cliente"/>
+      <Rnm id="20" nNm="Id_Cliente" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Producto" SupCls="Schema" SupNme="public">
+      <Rnm id="21" nNm="oferta_inicio" oNm="fecha_inicio"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="34" nNm="Factura" oNm="Venta_Producto"/>
+      <Rnm id="22" nNm="Venta_Producto" oNm="Venta_Programa"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Ciudad" SupCls="Schema" SupNme="public">
+      <Rnm id="42" nNm="id_ciudad" oNm="id_Ciudad"/>
+      <Rnm id="39" nNm="id_Ciudad" oNm="Id_Ciudad"/>
+      <Rnm id="24" nNm="Id_Ciudad" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="25" nNm="Tarjeta" oNm="Tarjeta_Pago"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Tarjeta" SupCls="Schema" SupNme="public">
+      <Rnm id="40" nNm="id_tarjeta" oNm="id_Tarjeta"/>
+      <Rnm id="37" nNm="id_Tarjeta" oNm="Id_Tarjeta"/>
+      <Rnm id="26" nNm="Id_Tarjeta" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Pais" SupCls="Schema" SupNme="public">
+      <Rnm id="44" nNm="id_pais" oNm="Id_pais"/>
+      <Rnm id="43" nNm="Id_pais" oNm="Id_Pais"/>
+      <Rnm id="27" nNm="Id_Pais" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Ciudad" SupCls="Schema" SupNme="public">
+      <Rnm id="51" nNm="id_pais" oNm="Id_Pais"/>
+      <Rnm id="28" nNm="Id_Pais" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Desposito_Bancario" SupCls="Schema" SupNme="public">
+      <Rnm id="29" nNm="Id_DepositoBancario" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Tarjeta" SupCls="Schema" SupNme="public">
+      <Rnm id="30" nNm="cardholder_name" oNm="cardholder"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Producto" SupCls="Schema" SupNme="public">
+      <Rnm id="32" nNm="tamanio_archivo_KB" oNm="tamanio_archivo_kb"/>
+      <Rnm id="31" nNm="tamanio_archivo_kb" oNm="tamanio_archivo"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Idioma" SupCls="Schema" SupNme="public">
+      <Rnm id="59" nNm="id_idioma" oNm="Id_Idioma"/>
+      <Rnm id="33" nNm="Id_Idioma" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="35" nNm="Usuario" oNm="Cliente"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="41" nNm="id_producto" oNm="id_Producto"/>
+      <Rnm id="38" nNm="id_Producto" oNm="Id_Producto"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Programa" SupCls="Schema" SupNme="public">
+      <Rnm id="46" nNm="id_producto" oNm="Id_Producto"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Programa" SupCls="Schema" SupNme="public">
+      <Rnm id="54" nNm="id_sistema_operativo" oNm="Id_sistema_operativo"/>
+      <Rnm id="49" nNm="Id_sistema_operativo" oNm="Id_SistemaOperativo"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="50" nNm="id_ciudad" oNm="Id_Ciudad"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="52" nNm="id_usuario" oNm="Id_Cliente"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="53" nNm="id_tarjeta" oNm="Id_Tarjeta"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Libro" SupCls="Schema" SupNme="public">
+      <Rnm id="56" nNm="id_categoria" oNm="Id_Categoria"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Libro" SupCls="Schema" SupNme="public">
+      <Rnm id="58" nNm="id_editorial" oNm="Id_Editorial"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Libro" SupCls="Schema" SupNme="public">
+      <Rnm id="60" nNm="id_idioma" oNm="Id_Idioma"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Libro" SupCls="Schema" SupNme="public">
+      <Rnm id="61" nNm="id_producto" oNm="Id_Producto"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Libro_Autores" SupCls="Schema" SupNme="public">
+      <Rnm id="63" nNm="id_autor" oNm="Id_Autor"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Libro_Autores" SupCls="Schema" SupNme="public">
+      <Rnm id="64" nNm="id_producto" oNm="Id_Producto"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Session" SupCls="Schema" SupNme="public">
+      <Rnm id="65" nNm="id_session" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Rol" SupCls="Schema" SupNme="public">
+      <Rnm id="66" nNm="id_rol" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="User_Rol" SupCls="Schema" SupNme="public">
+      <Rnm id="67" nNm="activo" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Funcion" SupCls="Schema" SupNme="public">
+      <Rnm id="68" nNm="id_funcion" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Rol_Funcion" SupCls="Schema" SupNme="public">
+      <Rnm id="69" nNm="activo" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Rol" SupCls="Schema" SupNme="public">
+      <Rnm id="70" nNm="nombre_r" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Tipo_UI" SupCls="Schema" SupNme="public">
+      <Rnm id="71" nNm="id_tipo_ui" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="72" nNm="Tipo_UI" oNm="TipoUI"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="82" nNm="Interface" oNm="User_Interface"/>
+      <Rnm id="73" nNm="User_Interface" oNm="UserInterface"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Interface" SupCls="Schema" SupNme="public">
+      <Rnm id="84" nNm="id_interface" oNm="interface"/>
+      <Rnm id="83" nNm="interface" oNm="user_interface"/>
+      <Rnm id="74" nNm="user_interface" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="public" SupCls="" SupNme="">
+      <Rnm id="81" nNm="Funcion_Interface" oNm="Function_Interface"/>
+      <Rnm id="80" nNm="Function_Interface" oNm="Interface"/>
+      <Rnm id="76" nNm="Interface" oNm="Funcion_User_Interface"/>
+      <Rnm id="75" nNm="Funcion_User_Interface" oNm="Funcion_User_Interfae"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Funcion_Interface" SupCls="Schema" SupNme="public">
+      <Rnm id="79" nNm="id_interface" oNm="id_Interface"/>
+      <Rnm id="78" nNm="id_Interface" oNm="id_interface"/>
+      <Rnm id="77" nNm="id_interface" oNm="Id"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Funcion_Interface" SupCls="Schema" SupNme="public">
+      <Rnm id="85" nNm="id_interface" oNm="interface"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Usuario" SupCls="Schema" SupNme="public">
+      <Rnm id="86" nNm="nombre_u" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Tipo_UI" SupCls="Schema" SupNme="public">
+      <Rnm id="87" nNm="nombre_t_u" oNm="nombre_t"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Tarjeta" SupCls="Schema" SupNme="public">
+      <Rnm id="94" nNm="nombre_tar" oNm="nombre_t"/>
+      <Rnm id="88" nNm="nombre_t" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Ciudad" SupCls="Schema" SupNme="public">
+      <Rnm id="95" nNm="nombre_ciu" oNm="nombre_c"/>
+      <Rnm id="89" nNm="nombre_c" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Pais" SupCls="Schema" SupNme="public">
+      <Rnm id="96" nNm="nombre_pai" oNm="nombre_p"/>
+      <Rnm id="90" nNm="nombre_p" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Categoria" SupCls="Schema" SupNme="public">
+      <Rnm id="91" nNm="nombre_cat" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Editorial" SupCls="Schema" SupNme="public">
+      <Rnm id="92" nNm="nombre_edi" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Idioma" SupCls="Schema" SupNme="public">
+      <Rnm id="93" nNm="nombre_idio" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Sistema_Operativo" SupCls="Schema" SupNme="public">
+      <Rnm id="97" nNm="nombre_so" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Programa" SupCls="Schema" SupNme="public">
+      <Rnm id="98" nNm="nombre_pro" oNm="nombre"/>
+    </RnmCh>
+  </RnmMgr>
+  <DbDocOptionMgr>
+    <BasicOptionMgr>
+      <Name>db.doc.option.mgr</Name>
+      <BoolOpt lbl="Diagrams" nm="doc.diagrams" on="1" spl="0"/>
+      <BoolOpt lbl="Foreign Keys" nm="doc.fks" on="1" spl="0"/>
+      <BoolOpt lbl="Indexes" nm="doc.indexes" on="1" spl="0"/>
+      <BoolOpt lbl="Overwrite CSS File" nm="doc.overwrite.css" on="1" spl="0"/>
+      <BoolOpt lbl="Procedures" nm="doc.procs" on="1" spl="0"/>
+      <BoolOpt lbl="Schemas" nm="doc.schemas" on="1" spl="0"/>
+      <BoolOpt lbl="Sequences" nm="doc.sequences" on="1" spl="0"/>
+      <BoolOpt lbl="Tables" nm="doc.tables" on="1" spl="0"/>
+      <BoolOpt lbl="Triggers" nm="doc.triggers" on="1" spl="0"/>
+      <BoolOpt lbl="Views" nm="doc.views" on="1" spl="0"/>
+    </BasicOptionMgr>
+  </DbDocOptionMgr>
+  <OpenEditors>
+    <OpenEditor ClsNm="Diagram" fqn="null.diagramA" selected="1"/>
+  </OpenEditors>
+  <TreePaths>
+    <TreePath/>
+    <TreePath>/Schemas (1)</TreePath>
+    <TreePath>/Diagrams (1)</TreePath>
+  </TreePaths>
+  <SqlTexts/>
+</Db>

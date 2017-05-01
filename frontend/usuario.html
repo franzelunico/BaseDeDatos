@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+</head>
+
+<body>
+<p>{{ saludo }}</p>
+<p>{{ permisos }}</p>
+<p>Usuario</p>
+<form action="salir/" method="post">{% csrf_token %}
+    <button type="submit">Cerrar Coneccion</button>
+</form>
+</body>
+</html>

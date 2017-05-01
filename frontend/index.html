@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+</head>
+
+<body>
+<p>{{ saludo }}</p>
+<p>{{ consulta }}</p>
+</br>
+<!--
+<form action="." method="post">{% csrf_token %}
+  <div class="container">
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="userpass" required>
+
+    <button type="submit">Login</button>
+    <input type="checkbox" checked="checked"> Remember me
+  </div>
+
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+-->
+
+<form action="." method="post">{% csrf_token %}
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="userpass" required>
+    <button type="submit">Login</button>
+</form>
+<form action="getpid/" method="post">{% csrf_token %}
+    <button type="submit">Cerrar Coneccion</button>
+</form>
+</body>
+
+</html>
