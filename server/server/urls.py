@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^$', Login.as_view(), name='my-view'),
     url(r'^usuario/', Usuario.as_view(), name='getpid'),
     url(r'^salir/', views.salir, name='salir'),
+    url(r'^comprar/', views.comprar, name='comprar'),
 ]

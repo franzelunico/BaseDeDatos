@@ -105,10 +105,22 @@
       <Cl au="0" df="" nm="id_ciudad" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="direccion" nu="1">
+      <Cl au="0" df="" nm="id_tarjeta" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="correo_e" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="id_tarjeta" nu="1">
+      <Cl au="0" df="" nm="nombre_p" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="precio_p" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="valor" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cantidad" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="fk_Factura_Tarjeta" prLkCl="id_tarjeta" upAc="3">
@@ -206,9 +218,6 @@
       </Cl>
       <Cl au="0" df="" nm="id_idioma" nu="1">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="titulo" nu="0">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="descripcion" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
@@ -311,6 +320,9 @@
       <Cl au="1" df="" nm="id_producto" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="nombre_p" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
       <Cl au="0" df="" nm="tamanio_archivo_KB" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
@@ -344,10 +356,7 @@
       <Cl au="0" df="" nm="fecha_expiracion" nu="1">
         <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="nombre_pro" nu="0">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="version" nu="0">
+      <Cl au="0" df="" nm="version_pro" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="dominio_32_64" nu="0">
@@ -438,7 +447,7 @@
       <Cl au="0" df="" nm="nombre_so" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="version" nu="0">
+      <Cl au="0" df="" nm="version_so" nu="0">
         <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="arquitectura" nu="0">
@@ -564,11 +573,11 @@
       <DbTableRectangleFill>HeaderFooterFill</DbTableRectangleFill>
       <svg path=""/>
     </DiaProps>
-    <TbGl bkCl="ff6666ff" sch="public" tbl="Producto" x="879" y="864"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Producto" x="880" y="892"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Libro" x="1045" y="1106"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Sistema_Operativo" x="144" y="1119"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Programa" x="701" y="1117"/>
-    <TbGl bkCl="ff6666ff" sch="public" tbl="Factura" x="898" y="682"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Factura" x="896" y="668"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Categoria" x="1448" y="1063"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Editorial" x="1721" y="1133"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Autor" x="1492" y="1337"/>
@@ -593,18 +602,18 @@
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Factura.fk_Factura_Tarjeta" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="PARENT_LINE" x1="537" x2="537" y1="447" y2="693"/>
-        <positionableLine lineRole="CHILD_LINE" x1="898" x2="541" y1="697" y2="697"/>
+        <positionableLine lineRole="PARENT_LINE" x1="537" x2="537" y1="447" y2="722"/>
+        <positionableLine lineRole="CHILD_LINE" x1="896" x2="541" y1="726" y2="726"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Factura.fk_Venta_Producto_Ciudad" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="SINGLE_LINE" x1="1299" x2="1125" y1="740" y2="740"/>
+        <positionableLine lineRole="SINGLE_LINE" x1="1299" x2="1123" y1="740" y2="740"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="SOUTH" nm="public.Factura.fk_Venta_Producto_Producto" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="SINGLE_LINE" x1="1000" x2="1000" y1="864" y2="774"/>
+        <positionableLine lineRole="SINGLE_LINE" x1="1001" x2="1001" y1="892" y2="812"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Funcion_Interface.fk_Funcion_Interface_Funcion" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
@@ -641,7 +650,7 @@
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="NORTH" nm="public.Libro.fk_Libro_Producto" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="SINGLE_LINE" x1="1088" x2="1088" y1="969" y2="1106"/>
+        <positionableLine lineRole="SINGLE_LINE" x1="1089" x2="1089" y1="1010" y2="1106"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro_Autores.fk_Libro_Autores_Autor" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
@@ -652,13 +661,13 @@
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Libro_Autores.fk_Libro_Autores_Libro" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="PARENT_LINE" x1="1203" x2="1203" y1="1237" y2="1500"/>
+        <positionableLine lineRole="PARENT_LINE" x1="1203" x2="1203" y1="1224" y2="1500"/>
         <positionableLine lineRole="CHILD_LINE" x1="1325" x2="1207" y1="1504" y2="1504"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="NORTH" nm="public.Programa.fk_Programa_Producto" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="SINGLE_LINE" x1="909" x2="909" y1="969" y2="1117"/>
+        <positionableLine lineRole="SINGLE_LINE" x1="910" x2="910" y1="1010" y2="1117"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Programa.fk_Programa_SistemaOperativo" parentEdge="EAST" positioner="OneLineUserLinkPositioner">
@@ -703,7 +712,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="99">
+  <RnmMgr NxRnmId="105">
     <RnmCh ObjCls="Schema" ParCls="Database" ParNme="openlibra" SupCls="" SupNme="">
       <Rnm id="1" nNm="public" oNm="schemaA"/>
     </RnmCh>
@@ -929,6 +938,22 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="Programa" SupCls="Schema" SupNme="public">
       <Rnm id="98" nNm="nombre_pro" oNm="nombre"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Programa" SupCls="Schema" SupNme="public">
+      <Rnm id="101" nNm="version_pro" oNm="version_p"/>
+      <Rnm id="99" nNm="version_p" oNm="version"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Sistema_Operativo" SupCls="Schema" SupNme="public">
+      <Rnm id="100" nNm="version_so" oNm="version"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="102" nNm="precio_p" oNm="valor"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="103" nNm="nombre_p" oNm="descripcion"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Factura" SupCls="Schema" SupNme="public">
+      <Rnm id="104" nNm="correo_e" oNm="direccion"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>

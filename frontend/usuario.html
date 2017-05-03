@@ -12,5 +12,64 @@
 <form action="salir/" method="post">{% csrf_token %}
     <button type="submit">Cerrar Coneccion</button>
 </form>
+<form action="/comprar/" method="post">{% csrf_token %}
+    {% for producto in productos %}
+        <p>Producto:  {{producto.valor}}</p>
+        <input type="checkbox" name="checks" value="{{ producto.id_producto }}"> 
+    {% endfor %}
+    <p>Envio de la factura</p>
+<button type="submit">Comprar</button>
+<div id="states" onChange="populateCities()">
+  States : <select id="StatesList" name="StatesList"> </select>
+</div>
+<div id="Cities">
+  Cities : <select id="CitiesList" name="CitiesList"> </select>
+</div>
+</form>
+<script type="text/javascript">
+    paises = JSON.stringify("{{ paises | safe }}");
+    paises = paises.replace(/u\'/g, "\'");
+    paises = paises.replace(/\'/g, "\"");
+    paises = paises.substring(1, paises.length-1)
+    paises = JSON.parse(paises);
+    var States = paises;
+    //populate states
+    for (var i = 0; i < States.length; i++) {
+      var opt = States[i];
+      var el = document.createElement("option");
+      el.textContent = opt.nombre_pai;
+      el.value = opt.id_pais;
+      StatesList.appendChild(el);
+    }
+    //Populate initial cities
+    populateCities();
+
+
+    //populate cities
+    function populateCities() {
+      console.log(States.length)
+      //clear the cities list
+      document.getElementById('CitiesList').options.length = 0;
+      var e = document.getElementById("StatesList");
+      var selectedState = e.options[e.selectedIndex].value;
+      console.log(selectedState)
+      var listOfCities;
+      for (var i = 0; i < States.length; i++) {
+          estado = States[i]
+        if (estado.id_pais == selectedState) {
+          listOfCities = States[i].ciudades;
+          break;
+        }
+      }
+      //populate Cities DropDown menu
+      for (var i = 0; i < listOfCities.length; i++) {
+        var opt = listOfCities[i];
+        var el = document.createElement("option");
+        el.textContent = opt.nombre_ci;
+        el.value = opt.id_ciudad;
+        CitiesList.appendChild(el);
+      }
+    }
+</script> 
 </body>
 </html>

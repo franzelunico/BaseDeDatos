@@ -28,19 +28,27 @@ WHERE
   "Sistema_Operativo".id_sistema_operativo = "Programa".id_sistema_operativo and
   "Producto".id_producto = "Programa".id_producto;
 
-
+/* Lista de productos */
 SELECT 
-  "Programa".id_producto,
-  "Programa".nombre_pro,
-  "Programa".version,
-  "Producto"."tamanio_archivo_KB", 
-  "Producto".precio,
+  "Producto".id_producto,
+  "Producto".nombre_p,
+  "Programa".version_pro,
+  "Producto"."tamanio_archivo_KB",
   "Sistema_Operativo".nombre_so,
-  "Sistema_Operativo".version,
-  "Sistema_Operativo".arquitectura
+  "Sistema_Operativo".version_so,
+  "Sistema_Operativo".arquitectura,
+  "Producto".precio
 FROM "Programa"
 INNER JOIN "Producto" ON "Programa".id_producto = "Producto".id_producto
 INNER JOIN "Sistema_Operativo" ON "Programa".id_sistema_operativo = "Sistema_Operativo".id_sistema_operativo;
 
-/* Comprar*/
 
+/*Lista pais_ciudad*/
+SELECT 
+  "Ciudad".id_ciudad, 
+  "Ciudad".id_pais,   
+  "Ciudad".nombre_ciu, 
+  "Pais".id_pais,    
+  "Pais".nombre_pai   
+FROM "Ciudad"
+INNER JOIN "Pais" ON "Ciudad".id_pais = "Pais".id_pais;

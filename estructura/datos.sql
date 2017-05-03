@@ -75,69 +75,69 @@ INSERT INTO "Tarjeta"(
 
 /******************** MODELO DE NEGOCIO ************************/
 /***************************************************************/
-INSERT INTO "Sistema_Operativo"(nombre_so, version, arquitectura) VALUES ('Windows', '10' , '86');
-INSERT INTO "Sistema_Operativo"(nombre_so, version, arquitectura) VALUES ('Debian', '8' , '86');
-INSERT INTO "Sistema_Operativo"(nombre_so, version, arquitectura) VALUES ('OS X', '10.11' , '86');
+INSERT INTO "Sistema_Operativo"(nombre_so, version_so, arquitectura) VALUES ('Windows', '10' , '86');
+INSERT INTO "Sistema_Operativo"(nombre_so, version_so, arquitectura) VALUES ('Debian', '8' , '86');
+INSERT INTO "Sistema_Operativo"(nombre_so, version_so, arquitectura) VALUES ('OS X', '10.11' , '86');
 
 
 INSERT INTO "Producto"(
-            "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES (2300, 20, 0,
+    VALUES ('VIM', 2300, 20, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
-            nombre_pro, version, dominio_32_64)
+            version_pro, dominio_32_64)
     VALUES (1, 1, NULL, NULL, 
-            'VIM', '8', '64');
+            '8', '64');
 
 
 INSERT INTO "Producto"(
-            "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES (30000, 40, 0,
+    VALUES ('netbeans', 30000, 40, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
-            nombre_pro, version, dominio_32_64)
+            version_pro, dominio_32_64)
     VALUES (2, 1, NULL, NULL, 
-            'netbeans', '8.2', '64');
+            '8.2', '64');
 
 
 
 INSERT INTO "Producto"(
-            "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES (40000, 50, 0,
+    VALUES ('eclipse', 40000, 50, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
-            nombre_pro, version, dominio_32_64)
+            version_pro, dominio_32_64)
     VALUES (3, 1, NULL, NULL, 
-            'pycharm', '2017.1', '64');
+            '2017.1', '64');
 
 
 INSERT INTO "Producto"(
-            "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES (2300, 20, 0,
+    VALUES ('phpstorm', 2300, 20, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
-            nombre_pro, version, dominio_32_64)
+            version_pro, dominio_32_64)
     VALUES (4, 1, NULL, NULL, 
-            'visual studio', '2017', '64');
+            '2017', '64');
 
 
 INSERT INTO "Producto"(
-            "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES (2300, 20, 0,
+    VALUES ('Bluej', 2300, 20, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
-            nombre_pro, version, dominio_32_64)
+            version_pro, dominio_32_64)
     VALUES (5, 1, NULL, NULL, 
-            'phpstorm', '2017.1', '64');
+            '2017.1', '64');
 
 /******************** MODELO DE NEGOCIO ************************/
