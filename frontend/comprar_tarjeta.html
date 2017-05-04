@@ -9,7 +9,7 @@
 <p>{{ saludo }}</p>
 <p>{{ permisos }}</p>
 <p>Usuario</p>
-<form action="salir/" method="post">{% csrf_token %}
+<form action="/salir/" method="post">{% csrf_token %}
     <button type="submit">Cerrar Coneccion</button>
 </form>
 <form action="/comprar/" method="post">{% csrf_token %}
@@ -18,15 +18,52 @@
         <input type="checkbox" name="checks" value="{{ producto.id_producto }}"> 
     {% endfor %}
     <p>Envio de la factura</p>
-<button type="submit">Comprar</button>
-<div id="states" onChange="populateCities()">
-  States : <select id="StatesList" name="StatesList"> </select>
-</div>
-<div id="Cities">
-  Cities : <select id="CitiesList" name="CitiesList"> </select>
-</div>
+    <div id="states" onChange="populateCities()">
+      States : <select id="StatesList" name="StatesList"> </select>
+    </div>
+
+    <div id="Cities">
+      Cities : <select id="CitiesList" name="CitiesList"> </select>
+    </div>
+        <p>Correo electronico para envio de factura  </p>
+        <input type="email" name="correo_e" value=""> 
+
+    <div id="Tajetas">
+      Tarjeta : <select id="TarjetaList" name="TarjetaList"> </select>
+    </div>
+
+    <button type="submit">Comprar</button>
+</form>
+<form action="/tarjeta/" method="post">{% csrf_token %}
+    <p>Agregar Nueva Tarjeta</p>
+        <p>nombre personalizado de la tardeja (chesko):</p>
+        <input type="text" name="nombre_tar" value=""> </br>
+        <p>Numero Tarjeta:</p>
+        <input type="text" name="nro_tarjeta" value=""> </br>
+        <p>Cardholder Name (visa, mastercard,bnb):</p>
+        <input type="text" name="cardholder_name" value=""> </br>
+        <p>Fecha de expiracion:</p>
+        <input type="date" name="fecha_expiracion" value=""> </br>
+    <button type="submit">Agregar</button>
 </form>
 <script type="text/javascript">
+    //Tarjetas
+    usuario = JSON.stringify("{{ u_tarjetas | safe }}");
+    usuario = usuario.replace(/u\'/g, "\'");
+    usuario = usuario.replace(/\'/g, "\"");
+    console.log(usuario)
+    usuario = usuario.substring(1, usuario.length-1)
+    usuario = JSON.parse(usuario);
+    tarjetas = usuario.tarjetas
+    for (var i = 0; i < tarjetas.length; i++) {
+      var opt = tarjetas[i];
+      var el = document.createElement("option");
+      el.textContent = opt.cardholder_name;
+      el.value = opt.id_tarjeta;
+      TarjetaList.appendChild(el);
+    }
+    
+    //Pais Cuiudad
     paises = JSON.stringify("{{ paises | safe }}");
     paises = paises.replace(/u\'/g, "\'");
     paises = paises.replace(/\'/g, "\"");

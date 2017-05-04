@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Programa</title>
+</head>
+
+<body>
+<form action="/salir/" method="post">{% csrf_token %}
+    <button type="submit">Cerrar Cession</button>
+</form>
+<p>Usuario</p>
+<form action="/programa/" method="post">{% csrf_token %}
+        <!-- Seleccionar SO -->
+        <!-- Producto-->
+        <p>Agregar un Programa</p>
+        <p>Nombre</p> 
+        <input type="text" name="nombre_p"> 
+        <p>Tamanio</p> 
+        <input type="number" name="tamanio_archivo_KB"> 
+        <p>Precio</p> 
+        <input type="number" name="precio"> 
+        <!-- Programa -->
+        <p>Version</p> 
+        <input type="number" name="version_pro" step="0.01"> 
+        <p>Soporte (32 o 64)</p> 
+        <select name="dominio_32_64">
+            <option value="32">32</option>
+            <option value="64">64</option>
+        </select>
+    <button type="submit">Agregar Producto</button>
+</form>
+<script type="text/javascript">
+    //Tarjetas
+    usuario = JSON.stringify("{{ u_tarjetas | safe }}");
+    usuario = usuario.replace(/u\'/g, "\'");
+    usuario = usuario.replace(/\'/g, "\"");
+    console.log(usuario)
+    usuario = usuario.substring(1, usuario.length-1)
+    usuario = JSON.parse(usuario);
+    tarjetas = usuario.tarjetas
+    for (var i = 0; i < tarjetas.length; i++) {
+      var opt = tarjetas[i];
+      var el = document.createElement("option");
+      el.textContent = opt.cardholder_name;
+      el.value = opt.id_tarjeta;
+      TarjetaList.appendChild(el);
+    }
+    
+    //Pais Cuiudad
+    paises = JSON.stringify("{{ paises | safe }}");
+    paises = paises.replace(/u\'/g, "\'");
+    paises = paises.replace(/\'/g, "\"");
+    paises = paises.substring(1, paises.length-1)
+    paises = JSON.parse(paises);
+    var States = paises;
+    //populate states
+    for (var i = 0; i < States.length; i++) {
+      var opt = States[i];
+      var el = document.createElement("option");
+      el.textContent = opt.nombre_pai;
+      el.value = opt.id_pais;
+      StatesList.appendChild(el);
+    }
+    //Populate initial cities
+    populateCities();
+
+
+    //populate cities
+    function populateCities() {
+      console.log(States.length)
+      //clear the cities list
+      document.getElementById('CitiesList').options.length = 0;
+      var e = document.getElementById("StatesList");
+      var selectedState = e.options[e.selectedIndex].value;
+      console.log(selectedState)
+      var listOfCities;
+      for (var i = 0; i < States.length; i++) {
+          estado = States[i]
+        if (estado.id_pais == selectedState) {
+          listOfCities = States[i].ciudades;
+          break;
+        }
+      }
+      //populate Cities DropDown menu
+      for (var i = 0; i < listOfCities.length; i++) {
+        var opt = listOfCities[i];
+        var el = document.createElement("option");
+        el.textContent = opt.nombre_ci;
+        el.value = opt.id_ciudad;
+        CitiesList.appendChild(el);
+      }
+    }
+</script> 
+</body>
+</html>

@@ -35,37 +35,49 @@ INSERT INTO "Ciudad"(id_pais, nombre_ciu, codigo_postal) VALUES (2, 'tarija', 44
 
 
 /******************** GESTION USUARIOS ************************/
-INSERT INTO "Tipo_UI"(nombre_t_u) VALUES ('catalogo');
-INSERT INTO "Interface"(id_tipo_ui) VALUES (1);
+INSERT INTO "Tipo_UI"(nombre_t_u) VALUES ('formulario');
+INSERT INTO "Interface"(id_tipo_ui, nombre_in) VALUES (1,'comprar');
+INSERT INTO "Interface"(id_tipo_ui, nombre_in) VALUES (1,'tarjeta');
+INSERT INTO "Interface"(id_tipo_ui, nombre_in) VALUES (1,'producto');
 
-INSERT INTO "Usuario"(nombre_u, password) VALUES ('franz', 'pfranz');
-INSERT INTO "Usuario"(nombre_u, password) VALUES ('maria', 'pmaria');
 INSERT INTO "Usuario"(nombre_u, password) VALUES ('jose', 'pjose');
+INSERT INTO "Usuario"(nombre_u, password) VALUES ('ana', 'pana');
+INSERT INTO "Usuario"(nombre_u, password) VALUES ('franz', 'pfranz');
+INSERT INTO "Usuario"(nombre_u, password) VALUES ('mario', 'pmario');
 
 INSERT INTO "Rol"(nombre_r) VALUES ('cliente');
 INSERT INTO "Rol"(nombre_r) VALUES ('contador');
-INSERT INTO "Rol"(nombre_r) VALUES ('administrador');
+INSERT INTO "Rol"(nombre_r) VALUES ('admin');
 
-INSERT INTO "Funcion"(nombre_f) VALUES ('listar_productos');
+INSERT INTO "Funcion"(nombre_f) VALUES ('comprar_producto');
+INSERT INTO "Funcion"(nombre_f) VALUES ('agregar_tarjeta');
+INSERT INTO "Funcion"(nombre_f) VALUES ('agregar_pais');
 
 INSERT INTO "User_Rol"(id_usuario,id_rol) VALUES (1,1);
 INSERT INTO "User_Rol"(id_usuario,id_rol) VALUES (2,1);
 INSERT INTO "User_Rol"(id_usuario,id_rol) VALUES (3,1);
+INSERT INTO "User_Rol"(id_usuario,id_rol) VALUES (4,3);
 
 
 INSERT INTO "Rol_Funcion"(id_rol,id_funcion) VALUES (1,1);
+INSERT INTO "Rol_Funcion"(id_rol,id_funcion) VALUES (1,2);
+INSERT INTO "Rol_Funcion"(id_rol,id_funcion) VALUES (3,3);
+
+
 INSERT INTO "Funcion_Interface"(id_funcion, id_interface) VALUES (1, 1);
+INSERT INTO "Funcion_Interface"(id_funcion, id_interface) VALUES (2, 2);
+INSERT INTO "Funcion_Interface"(id_funcion, id_interface) VALUES (3, 3);
 
 INSERT INTO "Tarjeta"(
             id_usuario, nombre_tar, nro_tarjeta, cardholder_name, fecha_expiracion)
     VALUES (1,'FLOPEZ', 9010, 'visa', '2019-07-13');
 INSERT INTO "Tarjeta"(
             id_usuario, nombre_tar, nro_tarjeta, cardholder_name, fecha_expiracion)
-    VALUES (1,'FLOPEZ', 9010, 'visa', '2019-07-13');
+    VALUES (1,'FLOPEZ', 9010, 'mastercard', '2019-07-13');
 
 INSERT INTO "Tarjeta"(
             id_usuario, nombre_tar, nro_tarjeta, cardholder_name, fecha_expiracion)
-    VALUES (2,'MCHOQUE', 9010, 'mastercard', '2019-07-13');
+    VALUES (2,'MCHOQUE', 9010, 'visa', '2019-07-13');
 INSERT INTO "Tarjeta"(
             id_usuario, nombre_tar, nro_tarjeta, cardholder_name, fecha_expiracion)
     VALUES (2,'MCHOQUE', 9010, 'mastercard', '2019-07-13');

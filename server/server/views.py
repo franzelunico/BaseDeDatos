@@ -67,14 +67,16 @@ class Coneccion(object):
         self.conn = psycopg2.connect(conn_string)
         self.cur = self.conn.cursor()
 
-    def desconectar(self):
-        self.cursor.close()
-        self.coneccion.close()
-
-    def consulta(self, q_sql):
+    def printBackendPID(self, mensaje):
         self.cur.execute("select pg_backend_pid();")
         rows = self.cur.fetchall()
+        print mensaje, rows[0]
 
+    def desconectar(self):
+        self.cur.close()
+        self.conn.close()
+
+    def consulta(self, q_sql):
         self.cur.execute(q_sql)
         rows = self.cur.fetchall()
         return rows
@@ -102,7 +104,7 @@ class Coneccion(object):
         query = ""
         query += "SELECT * "
         query += 'FROM "Usuario" '
-        query += 'INNER JOIN  "User_Rol" ON "Usuario"."id_usuario"="User_Rol"."id_usuario" '# noqa
+        query += 'INNER JOIN  "User_Rol" ON "Usuario"."id_usuario"="User_Rol"."id_usuario" ' # noqa
         query += 'INNER JOIN  "Rol" ON "User_Rol"."id_rol"="Rol"."id_rol" '
         query += 'INNER JOIN  "Rol_Funcion" ON "Rol"."id_rol"="Rol_Funcion"."id_rol" '# noqa
         query += 'INNER JOIN  "Funcion" ON "Rol_Funcion"."id_funcion"="Funcion"."id_funcion" '# noqa
@@ -111,8 +113,14 @@ class Coneccion(object):
         query += 'INNER JOIN  "Tipo_UI" ON "Interface"."id_tipo_ui"= "Tipo_UI"."id_tipo_ui" '# noqa
         query += 'WHERE "Usuario"."id_usuario" = %d;' % (self.usuario_nominal.getId())# noqa
         rows = self.consulta(query)
-        if len(rows) == 1:
-            print rows[0]
+        permisos = ""
+        for row in rows:
+            print row, 'permiso=', row[17]
+            if len(permisos) > 0:
+                permisos += "_"
+            permisos += row[17]
+        permisos += ".html"
+        return permisos
 
     def getProductos(self):
         query = ""
@@ -137,15 +145,24 @@ class Coneccion(object):
         # Realizar la consulta para los libros y mostrar
         return productos
 
-    def comprar(self, productos, id_Ciudad):
-        id_Ciudad = int(id_Ciudad)
+    # lista de productos seleccionado es productos
+    def comprar(self, productos, id_Ciudad, id_tarjetaa, correo_ee):
         fecha = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') #noqa
+        cantidad = 1
         for id_producto in productos:
             id_producto = str(id_producto)
+            id_ciudad = int(id_Ciudad)
+            id_tarjeta = id_tarjetaa
+            correo_e = "\'%s\'" % correo_ee
+            row = self.getProducto(id_producto)
+            nombre_p = "\'%s\'" % (row[0])
+            precio_p = row[1]
+            print nombre_p, precio_p
+            valor = precio_p*cantidad
             query = ""
             query += 'INSERT INTO "Factura" ('
-            query += 'id_producto, fecha, id_ciudad, direccion, id_tarjeta) '
-            query += 'VALUES (%s, \'%s\', %d, \'calle libertador 102\', 1);' % (id_producto, fecha, id_Ciudad) #noqa
+            query += 'id_producto, fecha , id_ciudad, id_tarjeta, correo_e, nombre_p, precio_p, valor, cantidad) ' #noqa
+            query += 'VALUES (%s , \'%s\', %s       , \'%s\',%s,%s,%s,%s,%s );' % (id_producto, fecha, id_ciudad, id_tarjeta, correo_e, nombre_p, precio_p, valor, cantidad) #noqa
             self.cur.execute(query)
             self.conn.commit()
 
@@ -165,7 +182,6 @@ class Coneccion(object):
         ciudades = []
         for fila in tabla:
             if id_anterior == fila[0]:
-                print "Agregar ciudad", fila[3]
                 ciudad = {
                     "id_ciudad": fila[2],
                     "nombre_ciu": fila[3]
@@ -187,26 +203,89 @@ class Coneccion(object):
                 paises.append(pais)
         return paises
 
+    def getTajetas(self):
+        id_usuario = self.usuario_nominal.getId()
+        query = ""
+        query += 'Select "Tarjeta".id_tarjeta, "Tarjeta".cardholder_name '
+        query += 'From "Tarjeta" '
+        query += 'Where "Tarjeta".id_usuario = %s' % (id_usuario)
+        tabla = self.consulta(query)
+        tarjetas = []
+        for fila in tabla:
+            ciudad = {
+                "id_tarjeta": fila[0],
+                "cardholder_name": fila[1]
+            }
+            tarjetas.append(ciudad)
+        usuario = {
+            "id_usuario": id_usuario,
+            "tarjetas": tarjetas
+        }
+        return usuario
+
+    def getProducto(self, id_producto):
+        print "GetProducto"
+        query = ""
+        query += 'select "Producto".nombre_p, "Producto".precio '
+        query += 'from "Producto" '
+        query += 'where "Producto".id_producto = %s;' % (id_producto)
+        rows = self.consulta(query)
+        for row in rows:
+            print row[0], row[1]
+        print rows[0]
+        return rows[0]
+        print "GetProducto"
+        query = ""
+        query += 'select "Producto".nombre_p, "Producto".precio '
+
+
+    def agregarTarjeta(self, nombre_tar, nro_tarjeta, cardholder_name, fecha_expiracion): # noqa
+        id_usuario = self.usuario_nominal.getId()
+        query = ""
+        query += 'insert into "Tarjeta"(id_usuario, nombre_tar, nro_tarjeta, cardholder_name, fecha_expiracion) ' # noqa
+        query += 'values (%s, \'%s\', \'%s\', \'%s\', \'%s\');' % (id_usuario, nombre_tar, nro_tarjeta, cardholder_name, fecha_expiracion) # noqa
+        self.cur.execute(query)
+        self.conn.commit()
+
+    def agregarPrograma(self, nombre_p, tamanio_archivo_KB, precio, version_pro, dominio_32_64): # noqa
+        # agregar Producto
+        query = ""
+        query += 'insert into "Producto"(nombre_p, "tamanio_archivo_KB", precio) ' # noqa
+        query += 'values (\'%s\', %s, %s);' % (nombre_p, tamanio_archivo_KB, precio) # noqa
+        self.cur.execute(query)
+        self.conn.commit()
+
+        query = 'select currval(\'"Producto_id_producto_seq\"\');'
+        self.cur.execute(query)
+        rows = self.cur.fetchall()
+        row = rows[0]
+        print int(row[0])
+
+        id_producto = int(row[0])
+        id_sistema_operativo = 1
+        query = 'insert into "Programa"(id_producto, id_sistema_operativo, version_pro, dominio_32_64) ' # noqa
+        query += 'values (%s, %s, %s, %s);' % (id_producto, id_sistema_operativo, version_pro, dominio_32_64) # noqa
+        print query
+        self.cur.execute(query)
+        self.conn.commit()
+
 
 class Usuario(View):
 
     def get(self, request, *args, **kwargs):
+        print "GET Usuario print permisos"
         coneccion = getConnecion(request)
-        coneccion.permisos()
+        permisos = coneccion.permisos()
         productos = coneccion.getProductos()
         paises = coneccion.getCiudades()
-        pais = {
-            "id_pais": 1,
-            "nombre_pai": "Bolivia",
-            "ciudades": ["Cbba", "Santa Cruz"]
-        }
+        tarjetas = coneccion.getTajetas()
         context = {
             'saludo': 'Bienvenido Usuario',
             'productos': productos,
             'paises': paises,
-            'pais': pais
+            'u_tarjetas': tarjetas
         }
-        return render(request, 'usuario.html', context)
+        return render(request, permisos, context)
 
 
 class Login(View):
@@ -240,9 +319,8 @@ def salir(request):
     coneccion = getConnecion(request)
     coneccion.desconectar()
     conecciones.remove(coneccion)
-    mensaje = 'Ha salido de la  coneccion '
-    context = {'saludo': mensaje}
-    return render(request, 'index.html', context)
+    coneccion = getConnecion(request)
+    return redirect('login')
 
 
 def comprar(request):
@@ -250,26 +328,50 @@ def comprar(request):
     coneccion = getConnecion(request)
     id_pais = request.POST['StatesList']
     id_ciudad = request.POST['CitiesList']
-    print id_pais, id_ciudad
-    coneccion.comprar(productos, id_ciudad)
-    mensaje = 'Comprado'
-    context = {'saludo': mensaje}
-    return render(request, 'index.html', context)
+    id_tarjeta = request.POST['TarjetaList']
+    correo_ee = request.POST['correo_e']
+    print id_pais, id_ciudad, id_tarjeta
+    coneccion.comprar(productos, id_ciudad, id_tarjeta, correo_ee)
+    return redirect('/usuario/')
+
+
+def tarjeta(request):
+    nombre_tar = request.POST['nombre_tar']
+    nro_tarjeta = request.POST['nro_tarjeta']
+    cardholder_name = request.POST['cardholder_name']
+    fecha_expiracion = request.POST['fecha_expiracion']
+    coneccion = getConnecion(request)
+    coneccion.agregarTarjeta(nombre_tar, nro_tarjeta, cardholder_name, fecha_expiracion) # noqa
+    return redirect('/usuario/')
+
+
+def programa(request):
+    coneccion = getConnecion(request)
+    permisos = coneccion.permisos()
+    a = request.POST['nombre_p']
+    b = request.POST['tamanio_archivo_KB']
+    c = request.POST['precio']
+    d = request.POST['version_pro']
+    e = request.POST['dominio_32_64']
+    coneccion.agregarPrograma(a, b, c, d, e)
+    return render(request, permisos)
 
 
 def getConnecion(request):
     res = None
     session = request.session.session_key
+    mensaje = ""
     for coneccion in conecciones:
         aux_session = coneccion.secion
         if aux_session == session:
-            print "Coneccion Existe"
+            mensaje = "Coneccion Existe"
             res = coneccion
     if res is None:
-        print "Coneccion Nueva"
+        mensaje = "Coneccion Nueva"
         res = Coneccion()
         res.conectar(session)
         conecciones.append(res)
+    res.printBackendPID(mensaje)
     return res
 
 conecciones = []

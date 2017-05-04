@@ -120,7 +120,7 @@
       <Cl au="0" df="" nm="valor" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="cantidad" nu="0">
+      <Cl au="0" df="1" nm="cantidad" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="fk_Factura_Tarjeta" prLkCl="id_tarjeta" upAc="3">
@@ -195,6 +195,9 @@
       </Cl>
       <Cl au="0" df="" nm="id_tipo_ui" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nombre_in" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="fk_Interface_Tipo_UI" prLkCl="id_tipo_ui" upAc="3">
         <PrTb mn="0" nm="Tipo_UI" oe="1" sch="public" zr="0"/>
@@ -329,7 +332,7 @@
       <Cl au="0" df="" nm="precio" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
-      <Cl au="0" df="" nm="porcentaje_descuento" nu="0">
+      <Cl au="0" df="0" nm="porcentaje_descuento" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="oferta_inicio" nu="1">
@@ -624,7 +627,7 @@
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Funcion_Interface.fk_Funcion_Interface_Interface" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="PARENT_LINE" x1="2363" x2="2363" y1="454" y2="576"/>
+        <positionableLine lineRole="PARENT_LINE" x1="2363" x2="2363" y1="467" y2="576"/>
         <positionableLine lineRole="CHILD_LINE" x1="2315" x2="2359" y1="580" y2="580"/>
       </positionableLines>
     </FkGl>

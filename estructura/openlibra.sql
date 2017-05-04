@@ -156,7 +156,7 @@ CREATE TABLE "public"."Factura"
 	nombre_p VARCHAR(200) NOT NULL,
 	precio_p INTEGER NOT NULL,
 	valor INTEGER NOT NULL,
-	cantidad INTEGER NOT NULL
+	cantidad INTEGER DEFAULT 1 NOT NULL
 );
 
 /* Add Primary Key */
@@ -212,7 +212,8 @@ ALTER TABLE "public"."Idioma" ADD CONSTRAINT "pkIdioma"
 CREATE TABLE "public"."Interface"
 (
 	id_interface INTEGER DEFAULT nextval('public."Interface_id_interface_seq"'::regclass) NOT NULL,
-	id_tipo_ui INTEGER NOT NULL
+	id_tipo_ui INTEGER NOT NULL,
+	nombre_in VARCHAR(200) NOT NULL
 );
 
 /* Add Primary Key */
@@ -294,7 +295,7 @@ CREATE TABLE "public"."Producto"
 	nombre_p VARCHAR(200) NULL,
 	"tamanio_archivo_KB" INTEGER NOT NULL,
 	precio INTEGER NOT NULL,
-	porcentaje_descuento INTEGER NOT NULL,
+	porcentaje_descuento INTEGER DEFAULT 0 NOT NULL,
 	oferta_inicio DATE NULL,
 	oferta_fin DATE NULL
 );
