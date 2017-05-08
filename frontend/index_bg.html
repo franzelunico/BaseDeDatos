@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+</head>
+
+<body>
+<p>{{ saludo }}</p>
+<p>{{ consulta }}</p>
+</br>
+<form action="." method="post">{% csrf_token %}
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="userpass" required>
+    <button type="submit">Login</button>
+</form>
+</body>
+</html>

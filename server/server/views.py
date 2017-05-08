@@ -26,13 +26,14 @@ class Programa(object):
         self.version_so = row[5]
         self.arquitectura_so = row[6]
         self.precio = row[7]
-        self.valor += "Nombre : " + self.nombre_p
-        self.valor += "Version : " + self.version_pro
-        self.valor += "Size : " + str(self.tamanio_archivo_KB) + " KB "
-        self.valor += "Precio : " + str(self.precio) + " KB "
-        self.valor += "Soporte en Sistemas Operativos : "
-        self.valor += self.nombre_so + " " + self.version_so + " "
-        self.valor += self.arquitectura_so
+        self.valor += "<Nombre : " + self.nombre_p + '>'
+        self.valor += "<Version : " + self.version_pro + '>'
+        self.valor += "<Size : " + str(self.tamanio_archivo_KB) + " KB " + '>'
+        self.valor += "<Precio : " + str(self.precio) + " Bs " + '>'
+        self.valor += "<Soporte en Sistemas Operativos : "
+        self.valor += "<Sistema Operativo : " + self.nombre_so + " "
+        self.valor += "vesion : " + self.version_so + " "
+        self.valor += "Arquitectura : " + self.arquitectura_so + '> >'
 
 
 class UsuarioNominal(object):
@@ -94,6 +95,11 @@ class Coneccion(object):
         if len(rows) == 1:
             u_id, u_nick, u_pass = rows[0]
             self.usuario_nominal = UsuarioNominal(u_id, u_nick, u_pass)
+            query = 'insert into "Session"(id_usuario,activo) '
+            query += 'values (%s,True);' % (u_id)
+            query += ';'
+            self.cur.execute(query)
+            self.conn.commit()
         else:
             self.usuario_nominal = None
 
@@ -248,10 +254,11 @@ class Coneccion(object):
         self.conn.commit()
 
     def agregarPrograma(self, nombre_p, tamanio_archivo_KB, precio, version_pro, dominio_32_64): # noqa
+        id_usuario = self.usuario_nominal.getId()
         # agregar Producto
         query = ""
-        query += 'insert into "Producto"(nombre_p, "tamanio_archivo_KB", precio) ' # noqa
-        query += 'values (\'%s\', %s, %s);' % (nombre_p, tamanio_archivo_KB, precio) # noqa
+        query += 'insert into "Producto"(id_usuario, nombre_p, "tamanio_archivo_KB", precio) ' # noqa
+        query += 'values (%s, \'%s\', %s, %s);' % (id_usuario, nombre_p, tamanio_archivo_KB, precio) # noqa
         self.cur.execute(query)
         self.conn.commit()
 
@@ -266,6 +273,21 @@ class Coneccion(object):
         query = 'insert into "Programa"(id_producto, id_sistema_operativo, version_pro, dominio_32_64) ' # noqa
         query += 'values (%s, %s, %s, %s);' % (id_producto, id_sistema_operativo, version_pro, dominio_32_64) # noqa
         print query
+        self.cur.execute(query)
+        self.conn.commit()
+
+    def salir(self):
+        query = ""
+        query += 'select "Session".id_session '
+        query += 'from "Session" order by fecha desc limit 1;'
+        self.cur.execute(query)
+        rows = self.cur.fetchall()
+        self.conn.commit()
+        id_session = rows[0]
+        # session
+        query = 'UPDATE "Session" '
+        query += 'SET activo=False '
+        query += 'WHERE "Session".id_session=%s;' % (id_session)
         self.cur.execute(query)
         self.conn.commit()
 
@@ -317,6 +339,7 @@ class Login(View):
 def salir(request):
     request.session.flush()
     coneccion = getConnecion(request)
+    coneccion.salir()
     coneccion.desconectar()
     conecciones.remove(coneccion)
     coneccion = getConnecion(request)
@@ -325,6 +348,9 @@ def salir(request):
 
 def comprar(request):
     productos = request.POST.getlist('checks')
+    print "Lista de productos"
+    print productos
+    print "-------------------"
     coneccion = getConnecion(request)
     id_pais = request.POST['StatesList']
     id_ciudad = request.POST['CitiesList']

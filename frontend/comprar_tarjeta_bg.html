@@ -2,7 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin Programa</title>
+<title>Title of the document</title>
+
+<style>
+    .line{
+        border-style: solid;
+        border-width: 5px;
+		padding-left: 6px;
+		padding-bottom: 6px;
+		padding-right: 6px;
+		padding-top: 6px;
+    }
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -10,73 +21,55 @@
 </head>
 
 <body>
+<p>{{ saludo }}</p>
+<p>{{ permisos }}</p>
+<p>Usuario</p>
 <form action="/salir/" method="post">{% csrf_token %}
-    <button type="submit">Cerrar Cession</button>
+    <button type="submit">Cerrar Session</button>
 </form>
 
-<div class="container">
-  <h2>Bienvenido Administrador</h2>
-  <p>Acceso</p>
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#home">Programas</a></li>
-    <li><a data-toggle="tab" href="#menu0">Libros</a></li>
-    <li><a data-toggle="tab" href="#menu1">Usuario</a></li>
-    <li><a data-toggle="tab" href="#menu2">Roles</a></li>
-    <li><a data-toggle="tab" href="#menu3">Funciones</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>Programa</h3>
-      <p>Agregar programa.</p>
-        <form action="/programa/" method="post">{% csrf_token %}
-                <!-- Seleccionar SO -->
-                <!-- Producto-->
-                <p>Nombre</p> 
-                <input class="form-control" type="text" name="nombre_p"> 
-                <p>Tamanio</p> 
-                <input class="form-control" type="number" name="tamanio_archivo_KB"> 
-                <p>Precio</p> 
-                <input class="form-control" type="number" name="precio"> 
-                <!-- Programa -->
-                <p>Version</p> 
-                <input class="form-control" type="number" name="version_pro" step="0.01"> 
-                <p>Soporte (32 o 64)</p> 
-                <select class="form-control" name="dominio_32_64">
-                    <option value="32">32</option>
-                    <option value="64">64</option>
-                </select>
-                </br>
-            <button class="btn btn-success" type="submit">Agregar Producto</button>
-        </form>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-        </br>
-
-    </div>
-    <div id="menu0" class="tab-pane fade">
-      <h3>En construccion </h3>
-    </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>En construccion </h3>
-    </div>
-    <div id="menu2" class="tab-pane fade">
-      <h3>En construccion </h3>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>En construccion </h3>
-    </div>
-  </div>
+<h1>Agregar Nueva Tarjeta</h1>
+<div class="line">
+    <form action="/tarjeta/" method="post">{% csrf_token %}
+            <p>nombre personalizado de la tardeja (chesko):</p>
+            <input type="text" name="nombre_tar" value=""> </br>
+            <p>Numero Tarjeta:</p>
+            <input type="text" name="nro_tarjeta" value=""> </br>
+            <p>Cardholder Name (visa, mastercard,bnb):</p>
+            <input type="text" name="cardholder_name" value=""> </br>
+            <p>Fecha de expiracion:</p>
+            <input type="date" name="fecha_expiracion" value=""> </br>
+        <button type="submit">Agregar</button>
+    </form>
 </div>
 
+<h1>Productos</h1>
+<form action="/comprar/" method="post">{% csrf_token %}
+    {% for producto in productos %}
+    <div class="line">
+        <input type="checkbox" name="checks" value="{{ producto.id_producto }}"> 
+        <p>Producto:  {{producto.valor}}</p>
+    </div>
+    {% endfor %}
+    <h1>Envio de la factura</h1>
+    <div class="line">
+        <div id="states" onChange="populateCities()">
+          States : <select id="StatesList" name="StatesList"> </select>
+        </div>
+
+        <div id="Cities">
+          Cities : <select id="CitiesList" name="CitiesList"> </select>
+        </div>
+            <p>Correo electronico para envio de factura  </p>
+            <input type="email" name="correo_e" value=""> 
+
+        <div id="Tajetas">
+          Tarjeta : <select id="TarjetaList" name="TarjetaList"> </select>
+        </div>
+    </div>
+
+    <button type="submit">Comprar</button>
+</form>
 <script type="text/javascript">
     //Tarjetas
     usuario = JSON.stringify("{{ u_tarjetas | safe }}");

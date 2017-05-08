@@ -1,3 +1,9 @@
+INSERT INTO "Event_Action"(nombre) VALUES ('insert');
+INSERT INTO "Event_Action"(nombre) VALUES ('delete');
+INSERT INTO "Event_Action"(nombre) VALUES ('update');
+
+
+
 INSERT INTO "Pais"(nombre_pai, codigo_pais) VALUES ('Argentina', 54);
 INSERT INTO "Pais"(nombre_pai, codigo_pais) VALUES ('Bolivia', 591);
 INSERT INTO "Pais"(nombre_pai, codigo_pais) VALUES ('Brazil', 55);
@@ -93,9 +99,9 @@ INSERT INTO "Sistema_Operativo"(nombre_so, version_so, arquitectura) VALUES ('OS
 
 
 INSERT INTO "Producto"(
-            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            id_usuario, nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES ('VIM', 2300, 20, 0,
+    VALUES (4, 'VIM', 2300, 20, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
@@ -105,9 +111,9 @@ INSERT INTO "Programa"(
 
 
 INSERT INTO "Producto"(
-            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            id_usuario, nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES ('netbeans', 30000, 40, 0,
+    VALUES (4,'netbeans', 30000, 40, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
@@ -118,9 +124,9 @@ INSERT INTO "Programa"(
 
 
 INSERT INTO "Producto"(
-            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            id_usuario, nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES ('eclipse', 40000, 50, 0,
+    VALUES (4,'eclipse', 40000, 50, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
@@ -130,9 +136,9 @@ INSERT INTO "Programa"(
 
 
 INSERT INTO "Producto"(
-            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            id_usuario, nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES ('phpstorm', 2300, 20, 0,
+    VALUES (4, 'phpstorm', 2300, 20, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
@@ -142,9 +148,9 @@ INSERT INTO "Programa"(
 
 
 INSERT INTO "Producto"(
-            nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
+            id_usuario, nombre_p, "tamanio_archivo_KB", precio, porcentaje_descuento, 
             oferta_inicio, oferta_fin)
-    VALUES ('Bluej', 2300, 20, 0,
+    VALUES (4, 'Bluej', 2300, 20, 0,
             NULL, NULL);
 INSERT INTO "Programa"(
             id_producto, id_sistema_operativo, fecha_activacion, fecha_expiracion, 
@@ -153,3 +159,26 @@ INSERT INTO "Programa"(
             '2017.1', '64');
 
 /******************** MODELO DE NEGOCIO ************************/
+
+
+/*Inicio de Session
+CREATE OR REPLACE FUNCTION rec_insert()  
+  RETURNS trigger AS  
+$$  
+BEGIN  
+         INSERT INTO "Log"(id_usuario, id_event_action, dato_nuevo, dato_viejo)  
+         VALUES(NEW.id_usuario, 1, 'Seccion Nueva', NULL);  
+    RETURN NEW;  
+END;  
+$$  
+LANGUAGE 'plpgsql';  
+
+
+CREATE TRIGGER ins_same_rec  
+  AFTER INSERT  
+  ON "Session"  
+  FOR EACH ROW  
+  EXECUTE PROCEDURE rec_insert(); 
+
+Factura*/
+

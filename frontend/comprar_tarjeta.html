@@ -1,51 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Title of the document</title>
+  <title>Open Libra</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-<p>{{ saludo }}</p>
-<p>{{ permisos }}</p>
-<p>Usuario</p>
+
 <form action="/salir/" method="post">{% csrf_token %}
-    <button type="submit">Cerrar Coneccion</button>
+    <button type="submit">Cerrar Session</button>
 </form>
-<form action="/comprar/" method="post">{% csrf_token %}
-    {% for producto in productos %}
-        <p>Producto:  {{producto.valor}}</p>
-        <input type="checkbox" name="checks" value="{{ producto.id_producto }}"> 
-    {% endfor %}
-    <p>Envio de la factura</p>
-    <div id="states" onChange="populateCities()">
-      States : <select id="StatesList" name="StatesList"> </select>
+<div class="container">
+  <h2>Bienvenido a Open Libra</h2>
+  <p>Los articulos pueden tener o no un costo eso depende de la licencia y sus terminos</p>
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Productos</a></li>
+    <li><a data-toggle="tab" href="#menu0">Comprar</a></li>
+    <li><a data-toggle="tab" href="#menu1">Tarjetas</a></li>
+    <li><a data-toggle="tab" href="#menu2">Registro de compras</a></li>
+    <li><a data-toggle="tab" href="#menu3">Reclamos 3</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>Productos</h3>
+      <p>Para realizar un compra debe tener almenos una tarjeta registrada.</p>
+        <form action="/comprar/" method="post">{% csrf_token %}
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Version</th>
+                    <th>Size</th>
+                    <th>Precio</th>
+                    <th>Soporte SO</th>
+                    <th>version SO</th>
+                    <th>arquitectura SO</th>
+                    <th>comprar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for prod in productos %}
+                <tr>
+                    <td>{{ prod.nombre_p}}</td>
+                    <td>{{ prod.version_pro}}</td>
+                    <td>{{ prod.tamanio_archivo_KB}}</td>
+                    <td>{{ prod.precio}}</td>
+                    <td>{{ prod.nombre_so}}</td>
+                    <td>{{ prod.version_so}}</td>
+                    <td>{{ prod.arquitectura_so}}</td>
+                    <td><input type="checkbox" name="checks" value="{{ prod.id_producto }}"></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+          </table>
+
+            <h1>Envio de la factura</h1>
+            <div class="row">
+                <div id="states" onChange="populateCities()">
+                  Pais : <select class="form-control" id="StatesList" name="StatesList" > </select>
+                </div>
+
+                <div id="Cities">
+                  Ciudad : <select class="form-control" id="CitiesList" name="CitiesList"> </select>
+                </div>
+                <p>Correo electronico para envio de factura  </p>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">@</span>
+                    <input class="form-control" type="email" name="correo_e" value=""> 
+                </div>
+
+                <div id="Tajetas">
+                  Tarjeta : <select class="form-control" id="TarjetaList" name="TarjetaList"> </select>
+                </div>
+            </div>
+            </br>
+            <button type="submit" class="btn btn-success">Comprar</button>
+        </form>
     </div>
 
-    <div id="Cities">
-      Cities : <select id="CitiesList" name="CitiesList"> </select>
-    </div>
-        <p>Correo electronico para envio de factura  </p>
-        <input type="email" name="correo_e" value=""> 
-
-    <div id="Tajetas">
-      Tarjeta : <select id="TarjetaList" name="TarjetaList"> </select>
+    <div id="menu0" class="tab-pane fade">
+      <h3>Comprar </h3>
     </div>
 
-    <button type="submit">Comprar</button>
-</form>
-<form action="/tarjeta/" method="post">{% csrf_token %}
-    <p>Agregar Nueva Tarjeta</p>
-        <p>nombre personalizado de la tardeja (chesko):</p>
-        <input type="text" name="nombre_tar" value=""> </br>
-        <p>Numero Tarjeta:</p>
-        <input type="text" name="nro_tarjeta" value=""> </br>
-        <p>Cardholder Name (visa, mastercard,bnb):</p>
-        <input type="text" name="cardholder_name" value=""> </br>
-        <p>Fecha de expiracion:</p>
-        <input type="date" name="fecha_expiracion" value=""> </br>
-    <button type="submit">Agregar</button>
-</form>
+
+    <div id="menu1" class="tab-pane fade">
+      <h3>Agregar Tarjeta</h3>
+      <form action="/tarjeta/" method="post">{% csrf_token %}
+          <p>nombre personalizado de la tardeja (chesko):</p>
+          <input class="form-control" type="text" name="nombre_tar" value=""> </br>
+          <p>Numero Tarjeta:</p>
+          <input class="form-control" type="text" name="nro_tarjeta" value=""> </br>
+          <p>Cardholder Name (visa, mastercard,bnb):</p>
+          <input class="form-control" type="text" name="cardholder_name" value=""> </br>
+          <p>Fecha de expiracion:</p>
+          <input class="form-control" type="date" name="fecha_expiracion" value=""> </br>
+          <button type="submit" class="btn btn-success">Agregar</button>
+      </form>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Registro de compras</h3>
+      <p>En construccion</p>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Reclamos, observaciones</h3>
+      <p>En construccion</p>
+    </div>
+  </div>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+</div>
+
 <script type="text/javascript">
     //Tarjetas
     usuario = JSON.stringify("{{ u_tarjetas | safe }}");
