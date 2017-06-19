@@ -182,3 +182,32 @@ CREATE TRIGGER ins_same_rec
 
 Factura*/
 
+
+
+
+INSERT INTO "Idioma"(nombre_idio) VALUES ('Ingles');
+INSERT INTO "Idioma"(nombre_idio) VALUES ('Español');
+INSERT INTO "Idioma"(nombre_idio) VALUES ('Frances');
+INSERT INTO "Idioma"(nombre_idio) VALUES ('Mandarin');
+INSERT INTO "Idioma"(nombre_idio) VALUES ('Hindustaní');
+INSERT INTO "Idioma"(nombre_idio) VALUES ('Portugués');
+INSERT INTO "Idioma"(nombre_idio) VALUES ('Ruso');
+INSERT INTO "Idioma"(nombre_idio) VALUES ('Italiano');
+
+
+INSERT INTO "Editorial"(nombre_edi, fundacion, pagina) VALUES ('Pearson', '1975-02-01', 'vacio');
+INSERT INTO "Editorial"(nombre_edi, fundacion, pagina) VALUES ('Thomson ', '1975-02-01', 'vacio');
+INSERT INTO "Editorial"(nombre_edi, fundacion, pagina) VALUES ('RELX Group', '1975-02-01', 'vacio');
+INSERT INTO "Editorial"(nombre_edi, fundacion, pagina) VALUES ('Wolters Kluwer', '1975-02-01', 'vacio');
+INSERT INTO "Editorial"(nombre_edi, fundacion, pagina) VALUES ('Penguin Random House', '1975-02-01', 'vacio');
+INSERT INTO "Editorial"(nombre_edi, fundacion, pagina) VALUES ('Shueisha', '1975-02-01', 'vacio');
+INSERT INTO "Editorial"(nombre_edi, fundacion, pagina) VALUES ('Bonnier', '1975-02-01', 'vacio');
+INSERT INTO "Editorial"(nombre_edi, fundacion, pagina) VALUES ('Saraiva', '1975-02-01', 'vacio');
+
+
+INSERT INTO "Categoria"(nombre_cat) VALUES ('Literatura contemporánea');
+INSERT INTO "Categoria"(nombre_cat) VALUES ('Humor');
+INSERT INTO "Categoria"(nombre_cat) VALUES ('Novela');
+INSERT INTO "Categoria"(nombre_cat) VALUES ('Cocina');
+INSERT INTO "Categoria"(nombre_cat) VALUES ('Programacion');
+INSERT INTO "Categoria"(nombre_cat) VALUES ('Filosofia');

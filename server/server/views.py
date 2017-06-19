@@ -82,27 +82,6 @@ class Coneccion(object):
         rows = self.cur.fetchall()
         return rows
 
-    # debe crearse el usuario recuerda
-    def login(self, nick, password):
-        query = ""
-        query += 'SELECT "id_usuario", "nombre_u", "password" '
-        query += 'FROM "Usuario" '
-        query += 'WHERE '
-        query += '"nombre_u" = \'%s\' and ' % (nick)
-        query += '"password" = \'%s\' ' % (password)
-        query += ';'
-        rows = self.consulta(query)
-        if len(rows) == 1:
-            u_id, u_nick, u_pass = rows[0]
-            self.usuario_nominal = UsuarioNominal(u_id, u_nick, u_pass)
-            query = 'insert into "Session"(id_usuario,activo) '
-            query += 'values (%s,True);' % (u_id)
-            query += ';'
-            self.cur.execute(query)
-            self.conn.commit()
-        else:
-            self.usuario_nominal = None
-
     def getUsuario(self):
         return self.usuario_nominal
 
@@ -276,17 +255,41 @@ class Coneccion(object):
         self.cur.execute(query)
         self.conn.commit()
 
+    # debe crearse el usuario recuerda
+    def login(self, nick, password):
+        query = ""
+        query += 'SELECT "id_usuario", "nombre_u", "password" '
+        query += 'FROM "Usuario" '
+        query += 'WHERE '
+        query += '"nombre_u" = \'%s\' and ' % (nick)
+        query += '"password" = \'%s\' ' % (password)
+        query += ';'
+        rows = self.consulta(query)
+        if len(rows) == 1:
+            u_id, u_nick, u_pass = rows[0]
+            self.usuario_nominal = UsuarioNominal(u_id, u_nick, u_pass)
+            query = 'insert into "Session"(id_usuario,activo) '
+            query += 'values (%s,True);' % (u_id)
+            query += ';'
+            self.cur.execute(query)
+            self.conn.commit()
+        else:
+            self.usuario_nominal = None
+
     def salir(self):
+        print "Salir"
+        usuario = self.usuario_nominal
+        print "Usuario", usuario.usuario_Id_Usuario
         query = ""
         query += 'select "Session".id_session '
-        query += 'from "Session" order by fecha desc limit 1;'
+        query += 'from "Session" order by fecha_inicio desc limit 1;'
         self.cur.execute(query)
         rows = self.cur.fetchall()
         self.conn.commit()
         id_session = rows[0]
         # session
         query = 'UPDATE "Session" '
-        query += 'SET activo=False '
+        query += 'SET activo=False , fecha_fin=now()'
         query += 'WHERE "Session".id_session=%s;' % (id_session)
         self.cur.execute(query)
         self.conn.commit()

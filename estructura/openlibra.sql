@@ -279,9 +279,10 @@ CREATE TABLE "public"."Log"
 	fecha TIMESTAMP DEFAULT now() NOT NULL,
 	id_usuario INTEGER NOT NULL,
 	id_event_action INTEGER NOT NULL,
+	usuario_evento VARCHAR(200) NULL,
+	table_name VARCHAR(200) NOT NULL,
 	dato_nuevo VARCHAR(400) NULL,
-	dato_viejo VARCHAR(400) NULL,
-	table_name VARCHAR(200) NOT NULL
+	dato_viejo VARCHAR(400) NULL
 );
 
 /* Add Primary Key */
@@ -395,8 +396,9 @@ CREATE TABLE "public"."Session"
 (
 	id_session INTEGER DEFAULT nextval('public."Session_id_session_seq"'::regclass) NOT NULL,
 	id_usuario INTEGER NOT NULL,
+	fecha_inicio TIMESTAMP DEFAULT now() NOT NULL,
+	fecha_fin TIMESTAMP NULL,
 	pid INTEGER DEFAULT pg_backend_pid() NOT NULL,
-	fecha TIMESTAMP DEFAULT now() NOT NULL,
 	activo BOOL DEFAULT False NOT NULL
 );
 

@@ -243,6 +243,14 @@
       <Cl au="0" df="" nm="fecha_publicacion" nu="0">
         <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="id_autor" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_Libro_Autor" prLkCl="id_autor" upAc="3">
+        <PrTb mn="0" nm="Autor" oe="1" sch="public" zr="1"/>
+        <CdTb mn="1" nm="Libro" oe="0" sch="public" zr="1"/>
+        <ClPr cdCl="id_autor" prCl="id_autor"/>
+      </Fk>
       <Fk deAc="3" nm="fk_Libro_Categoria" prLkCl="id_categoria" upAc="3">
         <PrTb mn="0" nm="Categoria" oe="1" sch="public" zr="1"/>
         <CdTb mn="1" nm="Libro" oe="0" sch="public" zr="1"/>
@@ -300,14 +308,17 @@
       <Cl au="0" df="" nm="id_event_action" nu="0">
         <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
       </Cl>
+      <Cl au="0" df="" nm="usuario_evento" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="table_name" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
+      </Cl>
       <Cl au="0" df="" nm="dato_nuevo" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="400" sc="null" sg="1" un="0"/>
       </Cl>
       <Cl au="0" df="" nm="dato_viejo" nu="1">
         <DT arr="0" ds="VarChar" en="" id="12" ln="400" sc="null" sg="1" un="0"/>
-      </Cl>
-      <Cl au="0" df="" nm="table_name" nu="0">
-        <DT arr="0" ds="VarChar" en="" id="12" ln="200" sc="null" sg="1" un="0"/>
       </Cl>
       <Fk deAc="3" nm="fk_Log_Event_Action" prLkCl="id_event_action" upAc="3">
         <PrTb mn="0" nm="Event_Action" oe="1" sch="public" zr="0"/>
@@ -638,15 +649,14 @@
     <TbGl bkCl="ff6666ff" sch="public" tbl="Sistema_Operativo" x="1684" y="1148"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Programa" x="1127" y="1121"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Factura" x="1469" y="823"/>
-    <TbGl bkCl="ff6666ff" sch="public" tbl="Categoria" x="1555" y="1389"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Categoria" x="1596" y="1333"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Editorial" x="1792" y="1421"/>
-    <TbGl bkCl="ff6666ff" sch="public" tbl="Autor" x="1770" y="1640"/>
-    <TbGl bkCl="ff6666ff" sch="public" tbl="Libro_Autores" x="1446" y="1767"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Autor" x="1557" y="1776"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Usuario" x="872" y="354"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Ciudad" x="1938" y="833"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Pais" x="2311" y="848"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Tarjeta" x="1470" y="617"/>
-    <TbGl bkCl="ff6666ff" sch="public" tbl="Idioma" x="1820" y="1506"/>
+    <TbGl bkCl="ff6666ff" sch="public" tbl="Idioma" x="1812" y="1536"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Session" x="1004" y="148"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="User_Rol" x="1306" y="484"/>
     <TbGl bkCl="ff6666ff" sch="public" tbl="Rol" x="1487" y="335"/>
@@ -694,9 +704,16 @@
         <positionableLine lineRole="SINGLE_LINE" x1="2473" x2="2473" y1="322" y2="396"/>
       </positionableLines>
     </FkGl>
-    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro.fk_Libro_Categoria" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="public.Libro.fk_Libro_Autor" parentEdge="WEST" positioner="TwoLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="SINGLE_LINE" x1="1555" x2="1423" y1="1441" y2="1441"/>
+        <positionableLine lineRole="PARENT_LINE" x1="1557" x2="1340" y1="1781" y2="1781"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1336" x2="1336" y1="1558" y2="1777"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="public.Libro.fk_Libro_Categoria" parentEdge="WEST" positioner="TwoLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="PARENT_LINE" x1="1596" x2="1388" y1="1380" y2="1380"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1384" x2="1384" y1="1427" y2="1384"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro.fk_Libro_Editorial" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
@@ -704,27 +721,16 @@
         <positionableLine lineRole="SINGLE_LINE" x1="1792" x2="1423" y1="1483" y2="1483"/>
       </positionableLines>
     </FkGl>
-    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro.fk_Libro_Idioma" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="public.Libro.fk_Libro_Idioma" parentEdge="WEST" positioner="TwoLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="SINGLE_LINE" x1="1820" x2="1423" y1="1533" y2="1533"/>
+        <positionableLine lineRole="PARENT_LINE" x1="1812" x2="1422" y1="1558" y2="1558"/>
+        <positionableLine lineRole="CHILD_LINE" x1="1418" x2="1418" y1="1558" y2="1554"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Libro.fk_Libro_Producto" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
       <positionableLines>
         <positionableLine lineRole="PARENT_LINE" x1="846" x2="846" y1="957" y2="1485"/>
         <positionableLine lineRole="CHILD_LINE" x1="1162" x2="850" y1="1489" y2="1489"/>
-      </positionableLines>
-    </FkGl>
-    <FkGl bkCl="ff000000" childEdge="EAST" nm="public.Libro_Autores.fk_Libro_Autores_Autor" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
-      <positionableLines>
-        <positionableLine lineRole="PARENT_LINE" x1="1948" x2="1948" y1="1719" y2="1793"/>
-        <positionableLine lineRole="CHILD_LINE" x1="1636" x2="1944" y1="1797" y2="1797"/>
-      </positionableLines>
-    </FkGl>
-    <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Libro_Autores.fk_Libro_Autores_Libro" parentEdge="SOUTH" positioner="TwoLineUserLinkPositioner">
-      <positionableLines>
-        <positionableLine lineRole="PARENT_LINE" x1="1320" x2="1320" y1="1545" y2="1788"/>
-        <positionableLine lineRole="CHILD_LINE" x1="1446" x2="1324" y1="1792" y2="1792"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="WEST" nm="public.Log.fk_Log_Event_Action" parentEdge="EAST" positioner="OneLineUserLinkPositioner">
@@ -734,7 +740,7 @@
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="SOUTH" nm="public.Log.fk_Log_Usuario" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
       <positionableLines>
-        <positionableLine lineRole="SINGLE_LINE" x1="892" x2="892" y1="354" y2="253"/>
+        <positionableLine lineRole="SINGLE_LINE" x1="892" x2="892" y1="354" y2="266"/>
       </positionableLines>
     </FkGl>
     <FkGl bkCl="ff000000" childEdge="NORTH" nm="public.Producto.fk_Producto_Usuario" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
@@ -791,7 +797,7 @@
     <Notes/>
     <Zones/>
   </Dgm>
-  <RnmMgr NxRnmId="111">
+  <RnmMgr NxRnmId="113">
     <RnmCh ObjCls="Schema" ParCls="Database" ParNme="openlibra" SupCls="" SupNme="">
       <Rnm id="1" nNm="public" oNm="schemaA"/>
     </RnmCh>
@@ -1047,6 +1053,10 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="Session" SupCls="Schema" SupNme="public">
       <Rnm id="110" nNm="fecha_inicio" oNm="fecha"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="Log" SupCls="Schema" SupNme="public">
+      <Rnm id="112" nNm="usuario_evento" oNm="usuario_accion"/>
+      <Rnm id="111" nNm="usuario_accion" oNm="nombre_usuario"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
