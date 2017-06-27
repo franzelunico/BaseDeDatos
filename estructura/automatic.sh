@@ -1,2 +1,2 @@
-cat limpiar.sql openlibra.sql datos.sql > reset.sql
-psql -U franz -d gestion_usuarios < reset.sql
+cat limpiar.sql > reset.sql
+psql -U franz -d gestion_usuarios_test < reset.sql

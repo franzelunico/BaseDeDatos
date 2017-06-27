@@ -26,7 +26,7 @@ SECRET_KEY = 'mdm1y77h=!0g+^96!4$5#$2+i!0ge8sn#(i&hxwlno5ip=ba!c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['openlibra.local', 'openlibra']
+ALLOWED_HOSTS = ['openlibra.local', 'openlibra', 'localhost']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'server'
 ]
 
 MIDDLEWARE = [
