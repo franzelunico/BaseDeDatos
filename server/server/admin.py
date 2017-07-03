@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Factura, Tarjeta, Ciudad, Pais, Producto
 from .models import Programa, Sistema_Operativo, Libro, Categoria, Editorial
-from .models import Idioma, Libro_Autor, Autor
+from .models import Idioma, Libro_Autor, Autor, Usuario
 
 
 admin.site.register(Factura)
@@ -17,3 +17,4 @@ admin.site.register(Editorial)
 admin.site.register(Idioma)
 admin.site.register(Libro_Autor)
 admin.site.register(Autor)
+admin.site.register(Usuario)

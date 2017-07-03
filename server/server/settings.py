@@ -26,7 +26,7 @@ SECRET_KEY = 'mdm1y77h=!0g+^96!4$5#$2+i!0ge8sn#(i&hxwlno5ip=ba!c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['openlibra.local', 'openlibra', 'localhost']
+ALLOWED_HOSTS = ['openlibra.local', 'openlibra', 'localhost','127.0.0.1']
 
 
 # Application definition
@@ -123,3 +123,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+AUTH_USER_MODEL = 'server.Usuario'

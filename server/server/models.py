@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
 class Factura(models.Model):
@@ -17,17 +18,18 @@ class Factura(models.Model):
         unique_together = (('fecha', 'id_producto'),)
 
     def __unicode__(self):
-        return self.nombre_p
+        return self.id_producto.nombre_p
 
 
 class Tarjeta(models.Model):
+    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
     nombre_tar = models.CharField(max_length=255)
     nro_tarjeta = models.CharField(max_length=255)
     cardholder_name = models.CharField(max_length=255)
     fecha_expiracion = models.DateField(null=False)
 
     def __unicode__(self):
-        return self.nombre_tar
+        return self.id_usuario.nombre + ' - ' + self.nombre_tar
 
 
 class Ciudad(models.Model):
@@ -69,7 +71,8 @@ class Programa(models.Model):
     dominio_32_64 = models.CharField(max_length=5)
 
     def __unicode__(self):
-        return self.version_pro
+        so = self.id_sistema_operativo.nombre_so
+        return self.producto.nombre_p + " - " + so
 
 
 class Sistema_Operativo(models.Model):
@@ -78,7 +81,8 @@ class Sistema_Operativo(models.Model):
     arquitectura = models.CharField(max_length=2)
 
     def __unicode__(self):
-        return self.nombre_so
+        ar = self.arquitectura
+        return self.nombre_so + ' - ver' + self.version_so + ' - ar' + ar
 
 
 # Libro
@@ -93,7 +97,7 @@ class Libro(models.Model):
     fecha_publicacion = models.DateField(null=False)
 
     def __unicode__(self):
-        return self.descripion
+        return self.producto.nombre_p
 
 
 class Categoria(models.Model):
@@ -133,12 +137,78 @@ class Autor(models.Model):
     apellido_materno = models.CharField(max_length=255)
 
     def __unicode__(self):
-        return self.nombre_idio
-#
-#
-# class Usuario(models.Model)
-#     nombre = models.CharField(max_length=255)
-#     password = models.CharField(max_length=255)
-#
-#     def __unicode__(self):
-#         return self.nombre
+        return self.nombres
+
+
+# GESTION USUARIOS
+
+class User_Rol(models.Model):
+    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE,)
+    id_rol = models.ForeignKey('Rol', on_delete=models.CASCADE,)
+    activo = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.activo
+
+
+class Rol_Funcion(models.Model):
+    id_rol = models.ForeignKey('Rol', on_delete=models.CASCADE,)
+    id_funcion = models.ForeignKey('Funcion', on_delete=models.CASCADE,)
+    activo = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.id_rol + "-" + self.id_funcion
+
+
+class Funcion_Interface(models.Model):
+    id_funcion = models.ForeignKey('Funcion', on_delete=models.CASCADE,)
+    id_interface = models.ForeignKey('Interface', on_delete=models.CASCADE,)
+
+    def __unicode__(self):
+        return self.id_funcion + "-" + self.id_interface
+
+
+class Interface(models.Model):
+    nombre = models.CharField(max_length=255)
+    id_tipo_ui = models.ForeignKey('Tipo_UI', on_delete=models.CASCADE,)
+    nombre_in = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.nombre
+
+
+class Tipo_UI(models.Model):
+    nombre_t_u = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.nombre
+
+
+class Funcion(models.Model):
+    nombre_f = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.nombre_f
+
+
+class Rol(models.Model):
+    nombre_r = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.nombre_r
+
+
+class Session(models.Model):
+    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE,)
+    pid = models.IntegerField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    activo = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.id_usuario
+
+
+class Usuario(AbstractUser):
+
+    def __unicode__(self):
+        return self.username
