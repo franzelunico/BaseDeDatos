@@ -14,7 +14,7 @@
     <button type="submit">Cerrar Session</button>
 </form>
 <div class="container">
-  <h2>Bienvenido a Open Libra</h2>
+    <h2>Bienvenido a Open Libra ({{user.username}})</h2>
   <p>Los articulos pueden tener o no un costo eso depende de la licencia y sus terminos</p>
 
   <ul class="nav nav-tabs">
@@ -44,16 +44,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                {% for prod in productos %}
+                {% for prog in programas %}
                 <tr>
-                    <td>{{ prod.nombre_p}}</td>
-                    <td>{{ prod.version_pro}}</td>
-                    <td>{{ prod.tamanio_archivo_KB}}</td>
-                    <td>{{ prod.precio}}</td>
-                    <td>{{ prod.nombre_so}}</td>
-                    <td>{{ prod.version_so}}</td>
-                    <td>{{ prod.arquitectura_so}}</td>
-                    <td><input type="checkbox" name="checks" value="{{ prod.id_producto }}"></td>
+                    <td>{{ prog.producto.nombre_p}}</td>
+                    <td>{{ prog.version_pro}}</td>
+                    <td>{{ prog.producto.tamanio_kb}}</td>
+                    <td>{{ prog.producto.precio}}</td>
+                    <td>{{ prog.id_sistema_operativo.nombre_so}}</td>
+                    <td>{{ prog.id_sistema_operativo.version_so}}</td>
+                    <td>{{ prog.id_sistema_operativo.arquitectura}}</td>
+                    <td><input type="checkbox" name="checks" value="{{ prog.id }}"></td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -140,7 +140,7 @@
       el.value = opt.id_tarjeta;
       TarjetaList.appendChild(el);
     }
-    
+
     //Pais Cuiudad
     paises = JSON.stringify("{{ paises | safe }}");
     paises = paises.replace(/u\'/g, "\'");

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
 class Factura(models.Model):
@@ -22,14 +22,14 @@ class Factura(models.Model):
 
 
 class Tarjeta(models.Model):
-    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre_tar = models.CharField(max_length=255)
     nro_tarjeta = models.CharField(max_length=255)
     cardholder_name = models.CharField(max_length=255)
     fecha_expiracion = models.DateField(null=False)
 
     def __unicode__(self):
-        return self.id_usuario.nombre + ' - ' + self.nombre_tar
+        return self.id_usuario.username + ' - ' + self.nombre_tar
 
 
 class Ciudad(models.Model):
@@ -143,7 +143,7 @@ class Autor(models.Model):
 # GESTION USUARIOS
 
 class User_Rol(models.Model):
-    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE,)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE,)
     id_rol = models.ForeignKey('Rol', on_delete=models.CASCADE,)
     activo = models.BooleanField(default=False)
 
@@ -199,16 +199,10 @@ class Rol(models.Model):
 
 
 class Session(models.Model):
-    id_usuario = models.ForeignKey('Usuario', on_delete=models.CASCADE,)
+    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE,)
     pid = models.IntegerField()
     fecha = models.DateTimeField(auto_now_add=True)
     activo = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.id_usuario
-
-
-class Usuario(AbstractUser):
-
-    def __unicode__(self):
-        return self.username
