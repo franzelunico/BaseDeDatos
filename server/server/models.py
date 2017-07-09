@@ -148,7 +148,10 @@ class User_Rol(models.Model):
     activo = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return self.activo
+        usuario = self.id_usuario.username
+        rol = " " + self.id_rol.nombre_r
+        activo = " Activo: " + str(self.activo)
+        return usuario + rol + activo
 
 
 class Rol_Funcion(models.Model):

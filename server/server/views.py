@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from server.models import Programa, Tarjeta, Producto, Sistema_Operativo
 from server.models import Pais, Ciudad, Factura
+from server.models import User_Rol
 import datetime
 import time
 
@@ -21,8 +22,18 @@ class Login(View):
         if usuario is None:
             print "Los datos ingresados no son correctos"
         else:
-            login(request, usuario)
-            return redirect('/usuario/')
+            user_rol = None
+            try:
+                user_rol = User_Rol.objects.get(id_usuario=usuario)
+            except User_Rol.DoesNotExist:
+                user_rol = None
+                print "<------USUARIO SIN ROL------>"
+            if user_rol is not None:
+                if user_rol.activo:
+                    login(request, usuario)
+                    return redirect('/usuario/')
+                else:
+                    print "<------ROL INACTIVO------>"
 
         context = {'user': usuario}
         return render(request, 'index.html', context)
@@ -33,12 +44,16 @@ class UserView(View):
     def get(self, request, *args, **kwargs):
         usuario = request.user
         print usuario
-        print 'super usuario', usuario.is_superuser
-        if usuario.is_superuser:
+        user_rol = User_Rol.objects.get(id_usuario=usuario)
+        rol = user_rol.id_rol
+        permisos = ""
+        context = {}
+        if rol.nombre_r == 'administrador':
+            permiso = 'producto.html'
             mensaje = 'Abrir coneccion '
             context = {'saludo': mensaje}
-            return render(request, 'producto.html', context)
-        else:
+            return render(request, permiso, context)
+        if rol.nombre_r == 'cliente':
             permisos = "comprar_tarjeta.html"
             programas = Programa.objects.all()
             tarjetas = Tarjeta.objects.filter(id_usuario=usuario)
@@ -74,6 +89,7 @@ class UserView(View):
                 'paises': paises
             }
             return render(request, permisos, context)
+        return redirect('/')
 
 
 def salir(request):
